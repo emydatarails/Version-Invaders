@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version Invaders - FP&A Superhero Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #game-header {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: linear-gradient(180deg, #0f3d0f 0%, #1a1a2e 100%);
+            border-bottom: 2px solid #217346;
+        }
+
+        #game-header .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #217346;
+            text-shadow: 0 0 10px #217346;
+        }
+
+        #game-header .stats {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        .stat-label {
+            color: #888;
+        }
+
+        .stat-value {
+            color: #4fc3f7;
+            font-weight: bold;
+        }
+
+        #game-canvas {
+            border: 2px solid #217346;
+            box-shadow: 0 0 30px rgba(33, 115, 70, 0.3);
+            cursor: none;
+        }
+
+        #start-screen, #game-over-screen, #win-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            background: rgba(26, 26, 46, 0.95);
+            padding: 40px;
+            border: 2px solid #217346;
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(33, 115, 70, 0.5);
+        }
+
+        #start-screen h1 {
+            font-size: 36px;
+            color: #217346;
+            text-shadow: 0 0 20px #217346;
+            margin-bottom: 10px;
+        }
+
+        #start-screen h2 {
+            font-size: 18px;
+            color: #4fc3f7;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        #start-screen .subtitle {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        #start-screen .lore {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            max-width: 500px;
+            font-style: italic;
+        }
+
+        .btn-start {
+            background: linear-gradient(180deg, #217346, #185a35);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .btn-start:hover {
+            background: linear-gradient(180deg, #2a9158, #217346);
+            box-shadow: 0 0 20px rgba(33, 115, 70, 0.5);
+        }
+
+        .controls-hint {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .controls-hint span {
+            color: #4fc3f7;
+        }
+
+        #game-over-screen h1, #win-screen h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        #game-over-screen h1 {
+            color: #ff4444;
+            text-shadow: 0 0 20px #ff4444;
+        }
+
+        #win-screen h1 {
+            color: #217346;
+            text-shadow: 0 0 20px #217346;
+        }
+
+        #game-over-screen p, #win-screen p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .final-score {
+            font-size: 24px;
+            color: #4fc3f7;
+            margin: 15px 0;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .level-banner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+            color: #217346;
+            text-shadow: 0 0 20px #217346;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .level-banner.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-header">
+        <div class="title">VERSION INVADERS</div>
+        <div class="stats">
+            <div><span class="stat-label">SCORE: </span><span class="stat-value" id="score-display">0</span></div>
+            <div><span class="stat-label">LEVEL: </span><span class="stat-value" id="level-display">1</span></div>
+            <div><span class="stat-label">LIVES: </span><span class="stat-value" id="lives-display"></span></div>
+        </div>
+    </div>
+
+    <canvas id="game-canvas" width="800" height="560"></canvas>
+
+    <div id="level-banner" class="level-banner"></div>
+
+    <div id="start-screen">
+        <h1>VERSION INVADERS</h1>
+        <h2>FP&A Superhero Edition</h2>
+        <div class="lore">
+            "The year is 2026. The shared drive has become a wasteland of<br>
+            <strong style="color:#ff6b6b">Budget_Final_v2_FINAL_USE_THIS_ONE_REALLY_FINAL.xlsx</strong><br><br>
+            You are the last FP&A Analyst standing. Armed with your<br>
+            <strong style="color:#4fc3f7">Single Source of Truth</strong>, you must destroy every rogue<br>
+            version before month-end close. The CFO is counting on you."
+        </div>
+        <div class="subtitle">
+            Destroy the rogue Excel versions.<br>
+            Protect the ONE TRUE FILE.
+        </div>
+        <button class="btn-start" onclick="startGame()">START MONTH-END CLOSE</button>
+        <div class="controls-hint">
+            <span>[Arrow Keys]</span> or <span>[A/D]</span> Move &nbsp;|&nbsp; <span>[Space]</span> Fire &nbsp;|&nbsp; <span>[P]</span> Pause
+        </div>
+    </div>
+
+    <div id="game-over-screen" class="hidden">
+        <h1>AUDIT FAILED</h1>
+        <p>The versions have overwhelmed you...</p>
+        <p>The CFO is not pleased.</p>
+        <div class="final-score">SCORE: <span id="final-score">0</span></div>
+        <p id="game-over-message"></p>
+        <button class="btn-start" onclick="startGame()">TRY AGAIN</button>
+    </div>
+
+    <div id="win-screen" class="hidden">
+        <h1>SINGLE VERSION ACHIEVED!</h1>
+        <p>You've eliminated all rogue versions!</p>
+        <p>The CFO has promoted you to VP of FP&A.</p>
+        <div class="final-score">FINAL SCORE: <span id="win-score">0</span></div>
+        <p id="win-message"></p>
+        <button class="btn-start" onclick="startGame()">PLAY AGAIN</button>
+    </div>
+
+    <script>
+    // ==================== GAME CONFIG ====================
+    const canvas = document.getElementById('game-canvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+
+    // ==================== GAME STATE ====================
+    let state = {
+        score: 0,
+        lives: 3,
+        level: 1,
+        paused: false,
+        running: false,
+        gameOver: false,
+        won: false,
+        player: null,
+        bullets: [],
+        enemies: [],
+        enemyBullets: [],
+        particles: [],
+        powerups: [],
+        starfield: [],
+        enemyDir: 1,
+        enemySpeed: 0.5,
+        enemyDropTimer: 0,
+        lastShotTime: 0,
+        shotCooldown: 250,
+        powerupActive: null,
+        powerupTimer: 0,
+        shakeTimer: 0,
+        comboCount: 0,
+        comboTimer: 0,
+        floatingTexts: [],
+    };
+
+    // Excel green palette
+    const COLORS = {
+        excelGreen: '#217346',
+        excelDarkGreen: '#185a35',
+        excelLightGreen: '#2a9158',
+        gridLine: '#333355',
+        cellBg: '#1e1e3a',
+        playerGlow: '#4fc3f7',
+        bullet: '#4fc3f7',
+        enemyBullet: '#ff6b6b',
+        text: '#e0e0e0',
+        gold: '#ffd700',
+        danger: '#ff4444',
+    };
+
+    // Version names for enemies - the horror of FP&A life
+    const VERSION_NAMES = [
+        'Budget_Final.xlsx',
+        'Budget_Final_v2.xlsx',
+        'Budget_FINAL_FINAL.xlsx',
+        'Budget_USE_THIS.xlsx',
+        'Budget_v3_John.xlsx',
+        'Budget_APPROVED.xlsx',
+        'Budget_OLD_DONT_USE.xlsx',
+        'Budget_Copy(2).xlsx',
+        'Budget_NEW_NEW.xlsx',
+        'Budget_LATEST.xlsx',
+        'Forecast_Final.xlsx',
+        'Forecast_v2_REAL.xlsx',
+        'Forecast_UPDATED.xlsx',
+        'Forecast_FIXED.xlsx',
+        'Model_backup.xlsx',
+        'Model_backup(1).xlsx',
+        'Model_WORKING.xlsx',
+        'PnL_Final_v4.xlsx',
+        'Consolidation_OLD.xlsx',
+        'Report_SEND_THIS.xlsx',
+        'Budget_Final_v2_FINAL_USE_THIS_ONE_REALLY_FINAL.xlsx',
+        'Budget_REAL_FINAL_NO_REALLY.xlsx',
+        'Budget_DONT_EDIT.xlsx',
+        'Budget_LOCKED.xlsx',
+    ];
+
+    // Level configurations
+    const LEVELS = [
+        { name: 'Q1 Close', rows: 3, cols: 8, speed: 0.4, shootChance: 0.001, desc: 'Easy quarter...' },
+        { name: 'Mid-Year Reforecast', rows: 4, cols: 8, speed: 0.55, shootChance: 0.0015, desc: 'The versions multiply...' },
+        { name: 'Budget Season', rows: 4, cols: 9, speed: 0.7, shootChance: 0.002, desc: 'Everyone has their own file!' },
+        { name: 'Year-End Audit', rows: 5, cols: 9, speed: 0.85, shootChance: 0.0025, desc: 'The auditors are coming!' },
+        { name: 'Board Presentation', rows: 5, cols: 10, speed: 1.0, shootChance: 0.003, desc: 'THE CFO NEEDS IT NOW!' },
+    ];
+
+    // Powerup types
+    const POWERUP_TYPES = [
+        { type: 'pivot', label: 'PIVOT TABLE', color: '#ffd700', duration: 5000, desc: 'Triple shot!' },
+        { type: 'vlookup', label: 'VLOOKUP', color: '#ff69b4', duration: 4000, desc: 'Rapid fire!' },
+        { type: 'macro', label: 'VBA MACRO', color: '#9c27b0', duration: 6000, desc: 'Auto-aim!' },
+        { type: 'ctrl_z', label: 'CTRL+Z', color: '#4caf50', duration: 0, desc: 'Extra life!' },
+    ];
+
+    // ==================== STARFIELD ====================
+    function initStarfield() {
+        state.starfield = [];
+        for (let i = 0; i < 80; i++) {
+            state.starfield.push({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                size: Math.random() * 1.5 + 0.5,
+                speed: Math.random() * 0.3 + 0.1,
+                alpha: Math.random() * 0.5 + 0.2,
+            });
+        }
+    }
+
+    function drawStarfield() {
+        state.starfield.forEach(star => {
+            ctx.fillStyle = `rgba(100, 150, 100, ${star.alpha})`;
+            ctx.fillRect(star.x, star.y, star.size, star.size);
+            star.y += star.speed;
+            if (star.y > H) { star.y = 0; star.x = Math.random() * W; }
+        });
+    }
+
+    // ==================== GRID BACKGROUND ====================
+    function drawGrid() {
+        ctx.strokeStyle = COLORS.gridLine;
+        ctx.lineWidth = 0.3;
+        ctx.globalAlpha = 0.15;
+        for (let x = 0; x < W; x += 60) {
+            ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+        }
+        for (let y = 0; y < H; y += 20) {
+            ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+        }
+        // Column headers like Excel
+        ctx.fillStyle = '#444466';
+        ctx.font = '9px Courier New';
+        const cols = 'ABCDEFGHIJKLM'.split('');
+        cols.forEach((c, i) => {
+            ctx.fillText(c, i * 60 + 27, 10);
+        });
+        ctx.globalAlpha = 1;
+    }
+
+    // ==================== PLAYER ====================
+    function createPlayer() {
+        return {
+            x: W / 2,
+            y: H - 50,
+            width: 50,
+            height: 30,
+            speed: 5,
+            invincible: 0,
+        };
+    }
+
+    function drawPlayer() {
+        const p = state.player;
+        if (!p) return;
+
+        // Invincibility flash
+        if (p.invincible > 0 && Math.floor(p.invincible / 5) % 2 === 0) return;
+
+        ctx.save();
+        // Glow
+        ctx.shadowColor = COLORS.playerGlow;
+        ctx.shadowBlur = 15;
+
+        // Ship body - spreadsheet icon shape
+        ctx.fillStyle = COLORS.excelGreen;
+        ctx.fillRect(p.x - 20, p.y - 5, 40, 25);
+
+        // Top section (like Excel header)
+        ctx.fillStyle = COLORS.excelLightGreen;
+        ctx.fillRect(p.x - 15, p.y - 12, 30, 10);
+
+        // Cannon
+        ctx.fillStyle = COLORS.playerGlow;
+        ctx.fillRect(p.x - 3, p.y - 18, 6, 10);
+
+        // Wings
+        ctx.fillStyle = COLORS.excelDarkGreen;
+        ctx.beginPath();
+        ctx.moveTo(p.x - 20, p.y + 20);
+        ctx.lineTo(p.x - 28, p.y + 25);
+        ctx.lineTo(p.x - 18, p.y + 10);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(p.x + 20, p.y + 20);
+        ctx.lineTo(p.x + 28, p.y + 25);
+        ctx.lineTo(p.x + 18, p.y + 10);
+        ctx.fill();
+
+        // Mini grid lines on body (it's a spreadsheet ship!)
+        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+        ctx.lineWidth = 0.5;
+        for (let gx = p.x - 18; gx <= p.x + 18; gx += 9) {
+            ctx.beginPath(); ctx.moveTo(gx, p.y - 3); ctx.lineTo(gx, p.y + 18); ctx.stroke();
+        }
+        for (let gy = p.y; gy <= p.y + 18; gy += 6) {
+            ctx.beginPath(); ctx.moveTo(p.x - 18, gy); ctx.lineTo(p.x + 18, gy); ctx.stroke();
+        }
+
+        ctx.shadowBlur = 0;
+        ctx.restore();
+
+        // Powerup indicator
+        if (state.powerupActive) {
+            ctx.font = '9px Courier New';
+            ctx.fillStyle = state.powerupActive.color;
+            ctx.textAlign = 'center';
+            ctx.fillText(state.powerupActive.label, p.x, p.y + 35);
+            ctx.textAlign = 'left';
+        }
+    }
+
+    // ==================== ENEMIES ====================
+    function createEnemies(level) {
+        const cfg = LEVELS[level - 1];
+        const enemies = [];
+        const enemyW = 60;
+        const enemyH = 28;
+        const padding = 8;
+        const totalW = cfg.cols * (enemyW + padding);
+        const startX = (W - totalW) / 2 + enemyW / 2;
+
+        for (let row = 0; row < cfg.rows; row++) {
+            for (let col = 0; col < cfg.cols; col++) {
+                const nameIdx = (row * cfg.cols + col) % VERSION_NAMES.length;
+                const hp = row === 0 ? 2 : 1; // top row is tougher
+                enemies.push({
+                    x: startX + col * (enemyW + padding),
+                    y: 40 + row * (enemyH + padding),
+                    width: enemyW,
+                    height: enemyH,
+                    hp: hp,
+                    maxHp: hp,
+                    name: VERSION_NAMES[nameIdx],
+                    row: row,
+                    alive: true,
+                    hitFlash: 0,
+                });
+            }
+        }
+        return enemies;
+    }
+
+    function drawEnemy(e) {
+        if (!e.alive) return;
+
+        ctx.save();
+
+        // Flash on hit
+        if (e.hitFlash > 0) {
+            ctx.shadowColor = '#fff';
+            ctx.shadowBlur = 10;
+            e.hitFlash--;
+        }
+
+        // File icon body
+        const hpRatio = e.hp / e.maxHp;
+        const r = e.row;
+        let bgColor;
+        if (r === 0) bgColor = '#8b0000';      // Boss row - dark red
+        else if (r === 1) bgColor = '#cc4400';  // Orange
+        else if (r === 2) bgColor = '#aa6600';  // Amber
+        else bgColor = '#666600';                // Yellow-ish
+
+        if (hpRatio < 1) bgColor = '#ff4444';   // Damaged
+
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(e.x - e.width / 2, e.y - e.height / 2, e.width, e.height);
+
+        // File fold corner
+        ctx.fillStyle = 'rgba(255,255,255,0.2)';
+        ctx.beginPath();
+        ctx.moveTo(e.x + e.width / 2 - 8, e.y - e.height / 2);
+        ctx.lineTo(e.x + e.width / 2, e.y - e.height / 2 + 8);
+        ctx.lineTo(e.x + e.width / 2, e.y - e.height / 2);
+        ctx.fill();
+
+        // Border
+        ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(e.x - e.width / 2, e.y - e.height / 2, e.width, e.height);
+
+        // Excel icon in corner
+        ctx.fillStyle = '#217346';
+        ctx.fillRect(e.x - e.width / 2 + 2, e.y - e.height / 2 + 2, 10, 10);
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 8px Arial';
+        ctx.fillText('X', e.x - e.width / 2 + 4, e.y - e.height / 2 + 10);
+
+        // Filename
+        ctx.fillStyle = '#fff';
+        ctx.font = '7px Courier New';
+        ctx.textAlign = 'center';
+        let displayName = e.name.length > 12 ? e.name.substring(0, 11) + '..' : e.name;
+        displayName = displayName.replace('.xlsx', '');
+        ctx.fillText(displayName, e.x, e.y + 4);
+        ctx.textAlign = 'left';
+
+        ctx.restore();
+    }
+
+    // ==================== BULLETS ====================
+    function drawBullet(b) {
+        ctx.save();
+        ctx.shadowColor = COLORS.bullet;
+        ctx.shadowBlur = 8;
+        ctx.fillStyle = COLORS.bullet;
+        // "=" sign bullet (it's a formula!)
+        ctx.font = 'bold 14px Courier New';
+        ctx.textAlign = 'center';
+        ctx.fillText('=', b.x, b.y + 5);
+        ctx.textAlign = 'left';
+        ctx.restore();
+    }
+
+    function drawEnemyBullet(b) {
+        ctx.save();
+        ctx.shadowColor = COLORS.enemyBullet;
+        ctx.shadowBlur = 8;
+        ctx.fillStyle = COLORS.enemyBullet;
+        // Enemy shoots "#REF!" errors
+        ctx.font = 'bold 9px Courier New';
+        ctx.textAlign = 'center';
+        ctx.fillText(b.text, b.x, b.y + 4);
+        ctx.textAlign = 'left';
+        ctx.restore();
+    }
+
+    // ==================== POWERUPS ====================
+    function spawnPowerup(x, y) {
+        if (Math.random() > 0.15) return; // 15% chance
+        const type = POWERUP_TYPES[Math.floor(Math.random() * POWERUP_TYPES.length)];
+        state.powerups.push({
+            x: x,
+            y: y,
+            width: 50,
+            height: 16,
+            speed: 1.5,
+            ...type,
+            age: 0,
+        });
+    }
+
+    function drawPowerup(p) {
+        ctx.save();
+        p.age++;
+        const pulse = Math.sin(p.age * 0.1) * 0.3 + 0.7;
+        ctx.globalAlpha = pulse;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 12;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x - p.width / 2, p.y - p.height / 2, p.width, p.height);
+        ctx.fillStyle = '#000';
+        ctx.font = 'bold 8px Courier New';
+        ctx.textAlign = 'center';
+        ctx.fillText(p.label, p.x, p.y + 3);
+        ctx.textAlign = 'left';
+        ctx.globalAlpha = 1;
+        ctx.restore();
+    }
+
+    // ==================== PARTICLES ====================
+    function spawnExplosion(x, y, color, count) {
+        for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 3 + 1;
+            state.particles.push({
+                x: x,
+                y: y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                life: 30 + Math.random() * 20,
+                maxLife: 50,
+                color: color,
+                size: Math.random() * 3 + 1,
+            });
+        }
+    }
+
+    function spawnCellExplosion(x, y) {
+        // Spreadsheet cells flying out
+        const cellTexts = ['#REF!', '#N/A', '#VALUE!', '####', '#DIV/0!', 'ERR', '$0.00', '=SUM(', 'VLOOKUP('];
+        for (let i = 0; i < 6; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 2 + 0.5;
+            state.particles.push({
+                x: x,
+                y: y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed - 1,
+                life: 40 + Math.random() * 20,
+                maxLife: 60,
+                color: '#ff6b6b',
+                size: 0,
+                text: cellTexts[Math.floor(Math.random() * cellTexts.length)],
+                isText: true,
+            });
+        }
+    }
+
+    function drawParticles() {
+        state.particles.forEach((p, i) => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.life--;
+            const alpha = p.life / p.maxLife;
+            if (p.isText) {
+                ctx.globalAlpha = alpha;
+                ctx.fillStyle = p.color;
+                ctx.font = '8px Courier New';
+                ctx.fillText(p.text, p.x, p.y);
+                ctx.globalAlpha = 1;
+            } else {
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = alpha;
+                ctx.fillRect(p.x, p.y, p.size, p.size);
+                ctx.globalAlpha = 1;
+            }
+        });
+        state.particles = state.particles.filter(p => p.life > 0);
+    }
+
+    // ==================== FLOATING TEXTS ====================
+    function addFloatingText(x, y, text, color) {
+        state.floatingTexts.push({ x, y, text, color, life: 40 });
+    }
+
+    function drawFloatingTexts() {
+        state.floatingTexts.forEach(ft => {
+            ft.y -= 1;
+            ft.life--;
+            ctx.globalAlpha = ft.life / 40;
+            ctx.fillStyle = ft.color;
+            ctx.font = 'bold 12px Courier New';
+            ctx.textAlign = 'center';
+            ctx.fillText(ft.text, ft.x, ft.y);
+            ctx.textAlign = 'left';
+            ctx.globalAlpha = 1;
+        });
+        state.floatingTexts = state.floatingTexts.filter(ft => ft.life > 0);
+    }
+
+    // ==================== INPUT ====================
+    const keys = {};
+    document.addEventListener('keydown', e => {
+        keys[e.key] = true;
+        if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'ArrowDown') e.preventDefault();
+        if (e.key === 'p' || e.key === 'P') {
+            if (state.running && !state.gameOver) state.paused = !state.paused;
+        }
+    });
+    document.addEventListener('keyup', e => { keys[e.key] = false; });
+
+    // ==================== SHOOTING ====================
+    function shoot() {
+        const now = Date.now();
+        const cooldown = state.powerupActive?.type === 'vlookup' ? 100 : state.shotCooldown;
+        if (now - state.lastShotTime < cooldown) return;
+        state.lastShotTime = now;
+
+        const p = state.player;
+        if (state.powerupActive?.type === 'pivot') {
+            // Triple shot
+            state.bullets.push({ x: p.x, y: p.y - 20, speed: 8 });
+            state.bullets.push({ x: p.x - 15, y: p.y - 15, speed: 8 });
+            state.bullets.push({ x: p.x + 15, y: p.y - 15, speed: 8 });
+        } else {
+            state.bullets.push({ x: p.x, y: p.y - 20, speed: 8 });
+        }
+    }
+
+    // ==================== ENEMY SHOOTING ====================
+    function enemyShoot() {
+        const cfg = LEVELS[state.level - 1];
+        const aliveEnemies = state.enemies.filter(e => e.alive);
+        if (aliveEnemies.length === 0) return;
+
+        aliveEnemies.forEach(e => {
+            if (Math.random() < cfg.shootChance) {
+                const errorTexts = ['#REF!', '#N/A', '#ERR', '#DIV/0!', '####'];
+                state.enemyBullets.push({
+                    x: e.x,
+                    y: e.y + e.height / 2,
+                    speed: 3 + state.level * 0.3,
+                    text: errorTexts[Math.floor(Math.random() * errorTexts.length)],
+                });
+            }
+        });
+    }
+
+    // ==================== COLLISION ====================
+    function checkCollision(a, bx, by, bw, bh) {
+        return a.x > bx - bw / 2 && a.x < bx + bw / 2 && a.y > by - bh / 2 && a.y < by + bh / 2;
+    }
+
+    // ==================== UPDATE ====================
+    function update() {
+        if (state.paused || state.gameOver) return;
+
+        const p = state.player;
+
+        // Player movement
+        if ((keys['ArrowLeft'] || keys['a'] || keys['A']) && p.x > 30) p.x -= p.speed;
+        if ((keys['ArrowRight'] || keys['d'] || keys['D']) && p.x < W - 30) p.x += p.speed;
+        if (keys[' ']) shoot();
+
+        // Invincibility timer
+        if (p.invincible > 0) p.invincible--;
+
+        // Powerup timer
+        if (state.powerupActive && state.powerupActive.duration > 0) {
+            state.powerupTimer -= 16;
+            if (state.powerupTimer <= 0) {
+                state.powerupActive = null;
+            }
+        }
+
+        // Combo timer
+        if (state.comboTimer > 0) {
+            state.comboTimer -= 16;
+            if (state.comboTimer <= 0) state.comboCount = 0;
+        }
+
+        // Update bullets
+        state.bullets.forEach(b => b.y -= b.speed);
+        state.bullets = state.bullets.filter(b => b.y > -10);
+
+        // Update enemy bullets
+        state.enemyBullets.forEach(b => b.y += b.speed);
+        state.enemyBullets = state.enemyBullets.filter(b => b.y < H + 10);
+
+        // Update powerups
+        state.powerups.forEach(pw => pw.y += pw.speed);
+        state.powerups = state.powerups.filter(pw => pw.y < H + 20);
+
+        // Auto-aim (macro powerup)
+        if (state.powerupActive?.type === 'macro') {
+            const aliveEnemies = state.enemies.filter(e => e.alive);
+            if (aliveEnemies.length > 0) {
+                const closest = aliveEnemies.reduce((a, b) => {
+                    const da = Math.abs(a.x - p.x);
+                    const db = Math.abs(b.x - p.x);
+                    return da < db ? a : b;
+                });
+                if (closest.x < p.x - 3) p.x -= p.speed * 0.7;
+                if (closest.x > p.x + 3) p.x += p.speed * 0.7;
+                shoot();
+            }
+        }
+
+        // Bullet-enemy collision
+        state.bullets.forEach((b, bi) => {
+            state.enemies.forEach(e => {
+                if (!e.alive) return;
+                if (checkCollision(b, e.x, e.y, e.width, e.height)) {
+                    e.hp--;
+                    e.hitFlash = 5;
+                    state.bullets.splice(bi, 1);
+
+                    if (e.hp <= 0) {
+                        e.alive = false;
+                        // Score with combo multiplier
+                        state.comboCount++;
+                        state.comboTimer = 2000;
+                        const baseScore = (5 - e.row) * 10 + state.level * 5;
+                        const comboMult = Math.min(state.comboCount, 10);
+                        const points = baseScore * comboMult;
+                        state.score += points;
+
+                        // Effects
+                        spawnExplosion(e.x, e.y, COLORS.gold, 12);
+                        spawnCellExplosion(e.x, e.y);
+                        addFloatingText(e.x, e.y - 15, `+${points}`, COLORS.gold);
+                        if (comboMult > 1) {
+                            addFloatingText(e.x, e.y - 30, `${comboMult}x COMBO!`, '#ff69b4');
+                        }
+
+                        // Spawn powerup chance
+                        spawnPowerup(e.x, e.y);
+                    } else {
+                        spawnExplosion(e.x, e.y, '#fff', 4);
+                    }
+                }
+            });
+        });
+
+        // Enemy bullet - player collision
+        if (p.invincible <= 0) {
+            state.enemyBullets.forEach((b, bi) => {
+                if (checkCollision(b, p.x, p.y, 40, 30)) {
+                    state.enemyBullets.splice(bi, 1);
+                    playerHit();
+                }
+            });
+        }
+
+        // Powerup - player collision
+        state.powerups.forEach((pw, pi) => {
+            if (checkCollision({ x: pw.x, y: pw.y }, p.x, p.y, 50, 40)) {
+                state.powerups.splice(pi, 1);
+                if (pw.type === 'ctrl_z') {
+                    state.lives++;
+                    addFloatingText(p.x, p.y - 30, 'CTRL+Z! +1 LIFE', '#4caf50');
+                } else {
+                    state.powerupActive = pw;
+                    state.powerupTimer = pw.duration;
+                    addFloatingText(p.x, p.y - 30, pw.desc, pw.color);
+                }
+                spawnExplosion(pw.x, pw.y, pw.color, 8);
+            }
+        });
+
+        // Move enemies
+        const aliveEnemies = state.enemies.filter(e => e.alive);
+        if (aliveEnemies.length === 0) {
+            nextLevel();
+            return;
+        }
+
+        let hitEdge = false;
+        const cfg = LEVELS[state.level - 1];
+        const speedMult = 1 + (1 - aliveEnemies.length / state.enemies.length) * 1.5; // Speed up as fewer enemies
+
+        aliveEnemies.forEach(e => {
+            e.x += state.enemyDir * cfg.speed * speedMult;
+            if (e.x + e.width / 2 > W - 10 || e.x - e.width / 2 < 10) hitEdge = true;
+        });
+
+        if (hitEdge) {
+            state.enemyDir *= -1;
+            aliveEnemies.forEach(e => {
+                e.y += 15;
+                // Check if enemies reached player
+                if (e.y + e.height / 2 > p.y - 20) {
+                    gameOver();
+                }
+            });
+        }
+
+        // Enemy shooting
+        enemyShoot();
+
+        // Screen shake
+        if (state.shakeTimer > 0) state.shakeTimer--;
+
+        // Update HUD
+        document.getElementById('score-display').textContent = state.score;
+        document.getElementById('level-display').textContent = state.level;
+        let livesStr = '';
+        for (let i = 0; i < state.lives; i++) livesStr += '\u{1F4CA}';
+        document.getElementById('lives-display').textContent = livesStr;
+    }
+
+    function playerHit() {
+        state.lives--;
+        state.player.invincible = 90; // ~1.5 sec
+        state.shakeTimer = 10;
+        state.powerupActive = null;
+        spawnExplosion(state.player.x, state.player.y, COLORS.danger, 15);
+        addFloatingText(state.player.x, state.player.y - 30, '#REF! ERROR', COLORS.danger);
+
+        if (state.lives <= 0) {
+            gameOver();
+        }
+    }
+
+    function gameOver() {
+        state.gameOver = true;
+        state.running = false;
+        document.getElementById('final-score').textContent = state.score;
+        const messages = [
+            'The shared drive wins again...',
+            'Maybe try naming conventions next time?',
+            'Have you considered SharePoint?',
+            'The CFO sent a "per my last email"...',
+        ];
+        document.getElementById('game-over-message').textContent = messages[Math.floor(Math.random() * messages.length)];
+        document.getElementById('game-over-screen').classList.remove('hidden');
+    }
+
+    function nextLevel() {
+        if (state.level >= LEVELS.length) {
+            winGame();
+            return;
+        }
+        state.level++;
+        state.powerupActive = null;
+        state.bullets = [];
+        state.enemyBullets = [];
+        state.powerups = [];
+        state.enemies = createEnemies(state.level);
+        state.enemyDir = 1;
+
+        // Show level banner
+        const banner = document.getElementById('level-banner');
+        const cfg = LEVELS[state.level - 1];
+        banner.textContent = `LEVEL ${state.level}: ${cfg.name}`;
+        banner.classList.add('show');
+        setTimeout(() => banner.classList.remove('show'), 2000);
+    }
+
+    function winGame() {
+        state.won = true;
+        state.running = false;
+        document.getElementById('win-score').textContent = state.score;
+        const messages = [
+            'One version to rule them all.',
+            'The CFO sheds a single tear of joy.',
+            'FP&A will write legends about you.',
+            'You\'ve achieved the impossible: version control.',
+        ];
+        document.getElementById('win-message').textContent = messages[Math.floor(Math.random() * messages.length)];
+        document.getElementById('win-screen').classList.remove('hidden');
+    }
+
+    // ==================== DRAW ====================
+    function draw() {
+        ctx.save();
+
+        // Screen shake
+        if (state.shakeTimer > 0) {
+            const shakeX = (Math.random() - 0.5) * 6;
+            const shakeY = (Math.random() - 0.5) * 6;
+            ctx.translate(shakeX, shakeY);
+        }
+
+        // Clear
+        ctx.fillStyle = '#0d0d1a';
+        ctx.fillRect(-5, -5, W + 10, H + 10);
+
+        drawGrid();
+        drawStarfield();
+
+        // Draw enemies
+        state.enemies.forEach(drawEnemy);
+
+        // Draw bullets
+        state.bullets.forEach(drawBullet);
+        state.enemyBullets.forEach(drawEnemyBullet);
+
+        // Draw powerups
+        state.powerups.forEach(drawPowerup);
+
+        // Draw player
+        drawPlayer();
+
+        // Draw particles
+        drawParticles();
+        drawFloatingTexts();
+
+        // Combo display
+        if (state.comboCount > 1) {
+            ctx.fillStyle = '#ff69b4';
+            ctx.font = 'bold 14px Courier New';
+            ctx.textAlign = 'right';
+            ctx.globalAlpha = 0.8;
+            ctx.fillText(`COMBO: ${state.comboCount}x`, W - 15, H - 15);
+            ctx.globalAlpha = 1;
+            ctx.textAlign = 'left';
+        }
+
+        // Powerup bar
+        if (state.powerupActive && state.powerupActive.duration > 0) {
+            const barW = 120;
+            const pct = state.powerupTimer / state.powerupActive.duration;
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.fillRect(W / 2 - barW / 2 - 2, H - 22, barW + 4, 12);
+            ctx.fillStyle = state.powerupActive.color;
+            ctx.fillRect(W / 2 - barW / 2, H - 20, barW * pct, 8);
+        }
+
+        // Pause overlay
+        if (state.paused) {
+            ctx.fillStyle = 'rgba(0,0,0,0.6)';
+            ctx.fillRect(0, 0, W, H);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 30px Courier New';
+            ctx.textAlign = 'center';
+            ctx.fillText('PAUSED', W / 2, H / 2 - 10);
+            ctx.font = '14px Courier New';
+            ctx.fillText('Press P to resume', W / 2, H / 2 + 20);
+            ctx.textAlign = 'left';
+        }
+
+        ctx.restore();
+    }
+
+    // ==================== GAME LOOP ====================
+    function gameLoop() {
+        if (!state.running && !state.gameOver && !state.won) return;
+        update();
+        draw();
+        if (state.running) requestAnimationFrame(gameLoop);
+    }
+
+    // ==================== START GAME ====================
+    function startGame() {
+        // Hide all screens
+        document.getElementById('start-screen').classList.add('hidden');
+        document.getElementById('game-over-screen').classList.add('hidden');
+        document.getElementById('win-screen').classList.add('hidden');
+
+        // Reset state
+        state.score = 0;
+        state.lives = 3;
+        state.level = 1;
+        state.paused = false;
+        state.running = true;
+        state.gameOver = false;
+        state.won = false;
+        state.player = createPlayer();
+        state.bullets = [];
+        state.enemyBullets = [];
+        state.particles = [];
+        state.powerups = [];
+        state.enemies = createEnemies(1);
+        state.enemyDir = 1;
+        state.lastShotTime = 0;
+        state.powerupActive = null;
+        state.comboCount = 0;
+        state.comboTimer = 0;
+        state.floatingTexts = [];
+
+        initStarfield();
+
+        // Show level banner
+        const banner = document.getElementById('level-banner');
+        const cfg = LEVELS[0];
+        banner.textContent = `LEVEL 1: ${cfg.name}`;
+        banner.classList.add('show');
+        setTimeout(() => banner.classList.remove('show'), 2000);
+
+        gameLoop();
+    }
+
+    // Initialize starfield for start screen background
+    initStarfield();
+    function drawStartBg() {
+        ctx.fillStyle = '#0d0d1a';
+        ctx.fillRect(0, 0, W, H);
+        drawGrid();
+        drawStarfield();
+        if (!state.running) requestAnimationFrame(drawStartBg);
+    }
+    drawStartBg();
+    </script>
+</body>
+</html>
