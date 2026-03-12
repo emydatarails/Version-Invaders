@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Version Invaders - FP&A Superhero Edition</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Courier+Prime:wght@400;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -12,9 +14,9 @@
         }
 
         body {
-            background: #1a1a2e;
+            background: #0a0a1a;
             color: #e0e0e0;
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier Prime', 'Courier New', monospace;
             overflow: hidden;
             height: 100vh;
             display: flex;
@@ -24,40 +26,35 @@
 
         #game-header {
             width: 100%;
-            max-width: 800px;
+            max-width: 1100px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background: linear-gradient(180deg, #0f3d0f 0%, #1a1a2e 100%);
+            padding: 10px 24px;
+            background: linear-gradient(180deg, #0f3d0f 0%, #0a0a1a 100%);
             border-bottom: 2px solid #217346;
         }
 
         #game-header .title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: #217346;
             text-shadow: 0 0 10px #217346;
+            letter-spacing: 2px;
         }
 
         #game-header .stats {
             display: flex;
-            gap: 20px;
-            font-size: 14px;
+            gap: 24px;
+            font-size: 15px;
         }
 
-        .stat-label {
-            color: #888;
-        }
-
-        .stat-value {
-            color: #4fc3f7;
-            font-weight: bold;
-        }
+        .stat-label { color: #888; }
+        .stat-value { color: #4fc3f7; font-weight: bold; }
 
         #game-canvas {
             border: 2px solid #217346;
-            box-shadow: 0 0 30px rgba(33, 115, 70, 0.3);
+            box-shadow: 0 0 40px rgba(33, 115, 70, 0.3), inset 0 0 60px rgba(0,0,0,0.3);
             cursor: none;
         }
 
@@ -68,40 +65,41 @@
             transform: translate(-50%, -50%);
             text-align: center;
             z-index: 10;
-            background: rgba(26, 26, 46, 0.95);
-            padding: 40px;
+            background: rgba(10, 10, 26, 0.97);
+            padding: 44px 50px;
             border: 2px solid #217346;
-            border-radius: 10px;
-            box-shadow: 0 0 40px rgba(33, 115, 70, 0.5);
+            border-radius: 12px;
+            box-shadow: 0 0 60px rgba(33, 115, 70, 0.4);
         }
 
         #start-screen h1 {
-            font-size: 36px;
+            font-size: 40px;
             color: #217346;
-            text-shadow: 0 0 20px #217346;
-            margin-bottom: 10px;
+            text-shadow: 0 0 25px #217346, 0 0 50px rgba(33,115,70,0.3);
+            margin-bottom: 8px;
+            letter-spacing: 3px;
         }
 
         #start-screen h2 {
             font-size: 18px;
             color: #4fc3f7;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             font-weight: normal;
         }
 
         #start-screen .subtitle {
             font-size: 14px;
             color: #aaa;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
             line-height: 1.6;
         }
 
         #start-screen .lore {
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 25px;
-            line-height: 1.8;
-            max-width: 500px;
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 28px;
+            line-height: 1.9;
+            max-width: 520px;
             font-style: italic;
         }
 
@@ -109,77 +107,50 @@
             background: linear-gradient(180deg, #217346, #185a35);
             color: white;
             border: none;
-            padding: 15px 40px;
+            padding: 16px 44px;
             font-size: 18px;
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier Prime', 'Courier New', monospace;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 6px;
             transition: all 0.3s;
+            letter-spacing: 1px;
         }
 
         .btn-start:hover {
             background: linear-gradient(180deg, #2a9158, #217346);
-            box-shadow: 0 0 20px rgba(33, 115, 70, 0.5);
+            box-shadow: 0 0 25px rgba(33, 115, 70, 0.6);
+            transform: scale(1.03);
         }
 
         .controls-hint {
-            margin-top: 20px;
+            margin-top: 22px;
             font-size: 12px;
-            color: #666;
+            color: #555;
         }
 
-        .controls-hint span {
-            color: #4fc3f7;
-        }
+        .controls-hint span { color: #4fc3f7; }
 
-        #game-over-screen h1, #win-screen h1 {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-
-        #game-over-screen h1 {
-            color: #ff4444;
-            text-shadow: 0 0 20px #ff4444;
-        }
-
-        #win-screen h1 {
-            color: #217346;
-            text-shadow: 0 0 20px #217346;
-        }
-
-        #game-over-screen p, #win-screen p {
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: #aaa;
-        }
-
-        .final-score {
-            font-size: 24px;
-            color: #4fc3f7;
-            margin: 15px 0;
-        }
-
-        .hidden {
-            display: none !important;
-        }
+        #game-over-screen h1, #win-screen h1 { font-size: 34px; margin-bottom: 15px; }
+        #game-over-screen h1 { color: #ff4444; text-shadow: 0 0 25px #ff4444; }
+        #win-screen h1 { color: #217346; text-shadow: 0 0 25px #217346; }
+        #game-over-screen p, #win-screen p { margin-bottom: 10px; font-size: 14px; color: #aaa; }
+        .final-score { font-size: 26px; color: #4fc3f7; margin: 18px 0; }
+        .hidden { display: none !important; }
 
         .level-banner {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 28px;
+            font-size: 30px;
             color: #217346;
-            text-shadow: 0 0 20px #217346;
+            text-shadow: 0 0 25px #217346;
             z-index: 5;
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.5s;
         }
-
-        .level-banner.show {
-            opacity: 1;
-        }
+        .level-banner.show { opacity: 1; }
     </style>
 </head>
 <body>
@@ -192,7 +163,7 @@
         </div>
     </div>
 
-    <canvas id="game-canvas" width="800" height="560"></canvas>
+    <canvas id="game-canvas" width="1100" height="680"></canvas>
 
     <div id="level-banner" class="level-banner"></div>
 
@@ -201,7 +172,7 @@
         <h2>FP&A Superhero Edition</h2>
         <div class="lore">
             "The year is 2026. The shared drive has become a wasteland of<br>
-            <strong style="color:#ff6b6b">Budget_Final_v2_FINAL_USE_THIS_ONE_REALLY_FINAL.xlsx</strong><br><br>
+            <strong style="color:#ff6b6b">Budget_Final_v2_FINAL_USE_THIS_ONE.xlsx</strong><br><br>
             You are the last FP&A Analyst standing. Armed with your<br>
             <strong style="color:#4fc3f7">Single Source of Truth</strong>, you must destroy every rogue<br>
             version before month-end close. The CFO is counting on you."
@@ -270,22 +241,20 @@
         floatingTexts: [],
     };
 
-    // Excel green palette
     const COLORS = {
         excelGreen: '#217346',
         excelDarkGreen: '#185a35',
         excelLightGreen: '#2a9158',
-        gridLine: '#333355',
-        cellBg: '#1e1e3a',
+        excelRibbon: '#217346',
+        gridLine: '#2a2a44',
         playerGlow: '#4fc3f7',
         bullet: '#4fc3f7',
         enemyBullet: '#ff6b6b',
-        text: '#e0e0e0',
         gold: '#ffd700',
         danger: '#ff4444',
     };
 
-    // Version names for enemies - the horror of FP&A life
+    // Version names - the horror of FP&A life
     const VERSION_NAMES = [
         'Budget_Final.xlsx',
         'Budget_Final_v2.xlsx',
@@ -294,7 +263,7 @@
         'Budget_v3_John.xlsx',
         'Budget_APPROVED.xlsx',
         'Budget_OLD_DONT_USE.xlsx',
-        'Budget_Copy(2).xlsx',
+        'Budget_Copy (2).xlsx',
         'Budget_NEW_NEW.xlsx',
         'Budget_LATEST.xlsx',
         'Forecast_Final.xlsx',
@@ -302,27 +271,42 @@
         'Forecast_UPDATED.xlsx',
         'Forecast_FIXED.xlsx',
         'Model_backup.xlsx',
-        'Model_backup(1).xlsx',
+        'Model_backup (1).xlsx',
         'Model_WORKING.xlsx',
         'PnL_Final_v4.xlsx',
         'Consolidation_OLD.xlsx',
         'Report_SEND_THIS.xlsx',
-        'Budget_Final_v2_FINAL_USE_THIS_ONE_REALLY_FINAL.xlsx',
-        'Budget_REAL_FINAL_NO_REALLY.xlsx',
+        'Budget_REALLY_FINAL.xlsx',
         'Budget_DONT_EDIT.xlsx',
         'Budget_LOCKED.xlsx',
+        'Forecast_CFO_edits.xlsx',
     ];
 
-    // Level configurations
+    // Fake spreadsheet data rows for inside the file icons
+    const FAKE_DATA = [
+        ['Revenue', '$1,234', '$1,456'],
+        ['COGS', '$567', '$612'],
+        ['Gross', '$667', '$844'],
+        ['OpEx', '$234', '$298'],
+        ['EBITDA', '$433', '$546'],
+        ['Net Inc', '$312', '$401'],
+        ['Q1 Act', '$890', '$920'],
+        ['Q2 Fcst', '$1,100', '$1,050'],
+        ['Variance', '-$45', '+$12'],
+        ['Headcount', '142', '138'],
+        ['CapEx', '$89', '$102'],
+        ['Depr.', '$34', '$37'],
+    ];
+
+    // Level configurations - fewer cols since enemies are bigger
     const LEVELS = [
-        { name: 'Q1 Close', rows: 3, cols: 8, speed: 0.4, shootChance: 0.001, desc: 'Easy quarter...' },
-        { name: 'Mid-Year Reforecast', rows: 4, cols: 8, speed: 0.55, shootChance: 0.0015, desc: 'The versions multiply...' },
-        { name: 'Budget Season', rows: 4, cols: 9, speed: 0.7, shootChance: 0.002, desc: 'Everyone has their own file!' },
-        { name: 'Year-End Audit', rows: 5, cols: 9, speed: 0.85, shootChance: 0.0025, desc: 'The auditors are coming!' },
-        { name: 'Board Presentation', rows: 5, cols: 10, speed: 1.0, shootChance: 0.003, desc: 'THE CFO NEEDS IT NOW!' },
+        { name: 'Q1 Close', rows: 3, cols: 6, speed: 0.4, shootChance: 0.001, desc: 'Easy quarter...' },
+        { name: 'Mid-Year Reforecast', rows: 3, cols: 7, speed: 0.5, shootChance: 0.0015, desc: 'The versions multiply...' },
+        { name: 'Budget Season', rows: 4, cols: 7, speed: 0.6, shootChance: 0.002, desc: 'Everyone has their own file!' },
+        { name: 'Year-End Audit', rows: 4, cols: 7, speed: 0.75, shootChance: 0.0025, desc: 'The auditors are coming!' },
+        { name: 'Board Presentation', rows: 4, cols: 8, speed: 0.9, shootChance: 0.003, desc: 'THE CFO NEEDS IT NOW!' },
     ];
 
-    // Powerup types
     const POWERUP_TYPES = [
         { type: 'pivot', label: 'PIVOT TABLE', color: '#ffd700', duration: 5000, desc: 'Triple shot!' },
         { type: 'vlookup', label: 'VLOOKUP', color: '#ff69b4', duration: 4000, desc: 'Rapid fire!' },
@@ -333,20 +317,20 @@
     // ==================== STARFIELD ====================
     function initStarfield() {
         state.starfield = [];
-        for (let i = 0; i < 80; i++) {
+        for (let i = 0; i < 100; i++) {
             state.starfield.push({
                 x: Math.random() * W,
                 y: Math.random() * H,
-                size: Math.random() * 1.5 + 0.5,
-                speed: Math.random() * 0.3 + 0.1,
-                alpha: Math.random() * 0.5 + 0.2,
+                size: Math.random() * 1.8 + 0.3,
+                speed: Math.random() * 0.3 + 0.05,
+                alpha: Math.random() * 0.4 + 0.1,
             });
         }
     }
 
     function drawStarfield() {
         state.starfield.forEach(star => {
-            ctx.fillStyle = `rgba(100, 150, 100, ${star.alpha})`;
+            ctx.fillStyle = `rgba(80, 140, 80, ${star.alpha})`;
             ctx.fillRect(star.x, star.y, star.size, star.size);
             star.y += star.speed;
             if (star.y > H) { star.y = 0; star.x = Math.random() * W; }
@@ -357,120 +341,144 @@
     function drawGrid() {
         ctx.strokeStyle = COLORS.gridLine;
         ctx.lineWidth = 0.3;
-        ctx.globalAlpha = 0.15;
-        for (let x = 0; x < W; x += 60) {
+        ctx.globalAlpha = 0.12;
+        for (let x = 0; x < W; x += 70) {
             ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
         }
-        for (let y = 0; y < H; y += 20) {
+        for (let y = 0; y < H; y += 22) {
             ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
         }
-        // Column headers like Excel
-        ctx.fillStyle = '#444466';
+        // Column headers
+        ctx.fillStyle = '#3a3a5a';
         ctx.font = '9px Courier New';
-        const cols = 'ABCDEFGHIJKLM'.split('');
+        const cols = 'ABCDEFGHIJKLMNOP'.split('');
         cols.forEach((c, i) => {
-            ctx.fillText(c, i * 60 + 27, 10);
+            ctx.fillText(c, i * 70 + 32, 10);
         });
         ctx.globalAlpha = 1;
     }
 
     // ==================== PLAYER ====================
     function createPlayer() {
-        return {
-            x: W / 2,
-            y: H - 50,
-            width: 50,
-            height: 30,
-            speed: 5,
-            invincible: 0,
-        };
+        return { x: W / 2, y: H - 55, width: 56, height: 36, speed: 6, invincible: 0 };
     }
 
     function drawPlayer() {
         const p = state.player;
         if (!p) return;
-
-        // Invincibility flash
         if (p.invincible > 0 && Math.floor(p.invincible / 5) % 2 === 0) return;
 
         ctx.save();
-        // Glow
         ctx.shadowColor = COLORS.playerGlow;
-        ctx.shadowBlur = 15;
+        ctx.shadowBlur = 20;
 
-        // Ship body - spreadsheet icon shape
+        // Main hull
         ctx.fillStyle = COLORS.excelGreen;
-        ctx.fillRect(p.x - 20, p.y - 5, 40, 25);
+        const hx = p.x, hy = p.y;
 
-        // Top section (like Excel header)
+        // Ship body
+        ctx.beginPath();
+        ctx.moveTo(hx, hy - 22);       // nose
+        ctx.lineTo(hx + 8, hy - 10);
+        ctx.lineTo(hx + 24, hy + 4);
+        ctx.lineTo(hx + 30, hy + 16);  // right wing tip
+        ctx.lineTo(hx + 18, hy + 12);
+        ctx.lineTo(hx + 10, hy + 16);
+        ctx.lineTo(hx - 10, hy + 16);
+        ctx.lineTo(hx - 18, hy + 12);
+        ctx.lineTo(hx - 30, hy + 16);  // left wing tip
+        ctx.lineTo(hx - 24, hy + 4);
+        ctx.lineTo(hx - 8, hy - 10);
+        ctx.closePath();
+        ctx.fill();
+
+        // Lighter inner hull
         ctx.fillStyle = COLORS.excelLightGreen;
-        ctx.fillRect(p.x - 15, p.y - 12, 30, 10);
-
-        // Cannon
-        ctx.fillStyle = COLORS.playerGlow;
-        ctx.fillRect(p.x - 3, p.y - 18, 6, 10);
-
-        // Wings
-        ctx.fillStyle = COLORS.excelDarkGreen;
         ctx.beginPath();
-        ctx.moveTo(p.x - 20, p.y + 20);
-        ctx.lineTo(p.x - 28, p.y + 25);
-        ctx.lineTo(p.x - 18, p.y + 10);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(p.x + 20, p.y + 20);
-        ctx.lineTo(p.x + 28, p.y + 25);
-        ctx.lineTo(p.x + 18, p.y + 10);
+        ctx.moveTo(hx, hy - 16);
+        ctx.lineTo(hx + 6, hy - 6);
+        ctx.lineTo(hx + 14, hy + 6);
+        ctx.lineTo(hx, hy + 10);
+        ctx.lineTo(hx - 14, hy + 6);
+        ctx.lineTo(hx - 6, hy - 6);
+        ctx.closePath();
         ctx.fill();
 
-        // Mini grid lines on body (it's a spreadsheet ship!)
-        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+        // Cockpit / spreadsheet window
+        ctx.fillStyle = '#1a3a2a';
+        ctx.fillRect(hx - 8, hy - 6, 16, 12);
+        // Mini grid in cockpit
+        ctx.strokeStyle = 'rgba(79,195,247,0.5)';
         ctx.lineWidth = 0.5;
-        for (let gx = p.x - 18; gx <= p.x + 18; gx += 9) {
-            ctx.beginPath(); ctx.moveTo(gx, p.y - 3); ctx.lineTo(gx, p.y + 18); ctx.stroke();
+        for (let gx = hx - 8; gx <= hx + 8; gx += 4) {
+            ctx.beginPath(); ctx.moveTo(gx, hy - 6); ctx.lineTo(gx, hy + 6); ctx.stroke();
         }
-        for (let gy = p.y; gy <= p.y + 18; gy += 6) {
-            ctx.beginPath(); ctx.moveTo(p.x - 18, gy); ctx.lineTo(p.x + 18, gy); ctx.stroke();
+        for (let gy = hy - 6; gy <= hy + 6; gy += 4) {
+            ctx.beginPath(); ctx.moveTo(hx - 8, gy); ctx.lineTo(hx + 8, gy); ctx.stroke();
         }
+
+        // Engine glow
+        ctx.shadowColor = '#4fc3f7';
+        ctx.shadowBlur = 12;
+        ctx.fillStyle = '#4fc3f7';
+        const flicker = Math.random() * 3;
+        ctx.fillRect(hx - 5, hy + 14, 10, 4 + flicker);
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(hx - 2, hy + 14, 4, 2 + flicker);
+
+        // Cannon tip
+        ctx.shadowColor = COLORS.playerGlow;
+        ctx.shadowBlur = 10;
+        ctx.fillStyle = '#4fc3f7';
+        ctx.fillRect(hx - 2, hy - 24, 4, 6);
 
         ctx.shadowBlur = 0;
         ctx.restore();
 
         // Powerup indicator
         if (state.powerupActive) {
-            ctx.font = '9px Courier New';
+            ctx.font = 'bold 10px Courier New';
             ctx.fillStyle = state.powerupActive.color;
             ctx.textAlign = 'center';
-            ctx.fillText(state.powerupActive.label, p.x, p.y + 35);
+            ctx.fillText(state.powerupActive.label, p.x, p.y + 30);
             ctx.textAlign = 'left';
         }
     }
 
-    // ==================== ENEMIES ====================
+    // ==================== ENEMIES (EXCEL FILES) ====================
+    const ENEMY_W = 120;
+    const ENEMY_H = 72;
+
     function createEnemies(level) {
         const cfg = LEVELS[level - 1];
         const enemies = [];
-        const enemyW = 60;
-        const enemyH = 28;
-        const padding = 8;
-        const totalW = cfg.cols * (enemyW + padding);
-        const startX = (W - totalW) / 2 + enemyW / 2;
+        const padX = 14;
+        const padY = 12;
+        const totalW = cfg.cols * (ENEMY_W + padX);
+        const startX = (W - totalW) / 2 + ENEMY_W / 2;
 
         for (let row = 0; row < cfg.rows; row++) {
             for (let col = 0; col < cfg.cols; col++) {
                 const nameIdx = (row * cfg.cols + col) % VERSION_NAMES.length;
-                const hp = row === 0 ? 2 : 1; // top row is tougher
+                const dataIdx = (row * cfg.cols + col) % FAKE_DATA.length;
+                const hp = row === 0 ? 3 : row === 1 ? 2 : 1;
                 enemies.push({
-                    x: startX + col * (enemyW + padding),
-                    y: 40 + row * (enemyH + padding),
-                    width: enemyW,
-                    height: enemyH,
+                    x: startX + col * (ENEMY_W + padX),
+                    y: 55 + row * (ENEMY_H + padY),
+                    width: ENEMY_W,
+                    height: ENEMY_H,
                     hp: hp,
                     maxHp: hp,
                     name: VERSION_NAMES[nameIdx],
+                    dataRows: [
+                        FAKE_DATA[dataIdx],
+                        FAKE_DATA[(dataIdx + 1) % FAKE_DATA.length],
+                        FAKE_DATA[(dataIdx + 2) % FAKE_DATA.length],
+                    ],
                     row: row,
                     alive: true,
                     hitFlash: 0,
+                    wobble: Math.random() * Math.PI * 2, // for idle animation
                 });
             }
         }
@@ -481,56 +489,209 @@
         if (!e.alive) return;
 
         ctx.save();
+        const ex = e.x - e.width / 2;
+        const ey = e.y - e.height / 2;
+        const ew = e.width;
+        const eh = e.height;
 
-        // Flash on hit
+        // Subtle wobble animation
+        e.wobble += 0.02;
+        const wobbleY = Math.sin(e.wobble) * 1.2;
+        ctx.translate(0, wobbleY);
+
+        // Hit flash
         if (e.hitFlash > 0) {
             ctx.shadowColor = '#fff';
-            ctx.shadowBlur = 10;
+            ctx.shadowBlur = 18;
             e.hitFlash--;
         }
 
-        // File icon body
+        // HP-based danger tint
         const hpRatio = e.hp / e.maxHp;
-        const r = e.row;
-        let bgColor;
-        if (r === 0) bgColor = '#8b0000';      // Boss row - dark red
-        else if (r === 1) bgColor = '#cc4400';  // Orange
-        else if (r === 2) bgColor = '#aa6600';  // Amber
-        else bgColor = '#666600';                // Yellow-ish
+        const damaged = hpRatio < 1;
 
-        if (hpRatio < 1) bgColor = '#ff4444';   // Damaged
+        // === DROP SHADOW ===
+        ctx.fillStyle = 'rgba(0,0,0,0.35)';
+        ctx.fillRect(ex + 3, ey + 3, ew, eh);
 
-        ctx.fillStyle = bgColor;
-        ctx.fillRect(e.x - e.width / 2, e.y - e.height / 2, e.width, e.height);
+        // === MAIN FILE BODY (white/light background like a real Excel window) ===
+        ctx.fillStyle = damaged ? '#3a1a1a' : '#1c2333';
+        ctx.fillRect(ex, ey, ew, eh);
 
-        // File fold corner
-        ctx.fillStyle = 'rgba(255,255,255,0.2)';
-        ctx.beginPath();
-        ctx.moveTo(e.x + e.width / 2 - 8, e.y - e.height / 2);
-        ctx.lineTo(e.x + e.width / 2, e.y - e.height / 2 + 8);
-        ctx.lineTo(e.x + e.width / 2, e.y - e.height / 2);
-        ctx.fill();
+        // === TITLE BAR (Excel green) ===
+        const titleH = 16;
+        const titleGrad = ctx.createLinearGradient(ex, ey, ex, ey + titleH);
+        if (damaged) {
+            titleGrad.addColorStop(0, '#8b2020');
+            titleGrad.addColorStop(1, '#6b1515');
+        } else {
+            titleGrad.addColorStop(0, '#217346');
+            titleGrad.addColorStop(1, '#1a5c38');
+        }
+        ctx.fillStyle = titleGrad;
+        ctx.fillRect(ex, ey, ew, titleH);
 
-        // Border
-        ctx.strokeStyle = 'rgba(255,255,255,0.4)';
-        ctx.lineWidth = 1;
-        ctx.strokeRect(e.x - e.width / 2, e.y - e.height / 2, e.width, e.height);
-
-        // Excel icon in corner
-        ctx.fillStyle = '#217346';
-        ctx.fillRect(e.x - e.width / 2 + 2, e.y - e.height / 2 + 2, 10, 10);
+        // Title bar - Excel "X" logo
+        ctx.fillStyle = damaged ? '#cc4444' : '#217346';
+        const logoSize = 11;
+        const logoX = ex + 3;
+        const logoY = ey + 2.5;
+        ctx.fillStyle = damaged ? '#aa3333' : '#185a35';
+        ctx.fillRect(logoX, logoY, logoSize, logoSize);
         ctx.fillStyle = '#fff';
-        ctx.font = 'bold 8px Arial';
-        ctx.fillText('X', e.x - e.width / 2 + 4, e.y - e.height / 2 + 10);
+        ctx.font = 'bold 9px Arial';
+        ctx.fillText('X', logoX + 2.5, logoY + 9.5);
 
-        // Filename
+        // Title bar - filename (BIG and readable)
         ctx.fillStyle = '#fff';
-        ctx.font = '7px Courier New';
+        ctx.font = 'bold 10px Courier New';
         ctx.textAlign = 'center';
-        let displayName = e.name.length > 12 ? e.name.substring(0, 11) + '..' : e.name;
-        displayName = displayName.replace('.xlsx', '');
-        ctx.fillText(displayName, e.x, e.y + 4);
+        let displayName = e.name;
+        // Truncate with ellipsis if too long for the title bar
+        if (ctx.measureText(displayName).width > ew - 30) {
+            while (ctx.measureText(displayName + '..').width > ew - 30 && displayName.length > 5) {
+                displayName = displayName.slice(0, -1);
+            }
+            displayName += '..';
+        }
+        ctx.fillText(displayName, e.x, ey + 12);
         ctx.textAlign = 'left';
+
+        // === RIBBON BAR (simplified) ===
+        const ribbonY = ey + titleH;
+        const ribbonH = 10;
+        ctx.fillStyle = damaged ? '#2a1515' : '#1a2a1a';
+        ctx.fillRect(ex, ribbonY, ew, ribbonH);
+        // Ribbon tabs
+        ctx.font = '7px Arial';
+        ctx.fillStyle = damaged ? '#884444' : '#5a9a6a';
+        const tabs = ['Home', 'Insert', 'Data', 'View'];
+        tabs.forEach((tab, i) => {
+            ctx.fillText(tab, ex + 5 + i * 27, ribbonY + 8);
+        });
+
+        // === FORMULA BAR ===
+        const formulaY = ribbonY + ribbonH;
+        const formulaH = 9;
+        ctx.fillStyle = damaged ? '#1a0d0d' : '#141c28';
+        ctx.fillRect(ex, formulaY, ew, formulaH);
+        ctx.fillStyle = damaged ? '#664444' : '#4a6a5a';
+        ctx.font = '7px Courier New';
+        ctx.fillText('fx', ex + 3, formulaY + 7);
+        ctx.fillStyle = damaged ? '#886666' : '#6a8a7a';
+        ctx.fillText('=SUM(B2:B14)', ex + 16, formulaY + 7);
+
+        // === SPREADSHEET GRID ===
+        const gridY = formulaY + formulaH;
+        const gridH = eh - (gridY - ey);
+        ctx.fillStyle = damaged ? '#1a0e0e' : '#0f1520';
+        ctx.fillRect(ex, gridY, ew, gridH);
+
+        // Column headers (A, B, C)
+        const colHeaderH = 9;
+        ctx.fillStyle = damaged ? '#2a1818' : '#1a2535';
+        ctx.fillRect(ex, gridY, ew, colHeaderH);
+        ctx.fillStyle = damaged ? '#886666' : '#6688aa';
+        ctx.font = 'bold 7px Arial';
+        const colW = (ew - 28) / 3;
+        ctx.fillText('A', ex + 32, gridY + 7);
+        ctx.fillText('B', ex + 32 + colW, gridY + 7);
+        ctx.fillText('C', ex + 32 + colW * 2, gridY + 7);
+
+        // Row numbers column
+        ctx.fillStyle = damaged ? '#2a1818' : '#1a2535';
+        ctx.fillRect(ex, gridY + colHeaderH, 14, gridH - colHeaderH);
+
+        // Data rows
+        const dataStartY = gridY + colHeaderH;
+        const rowH = (gridH - colHeaderH) / 3;
+        e.dataRows.forEach((dataRow, ri) => {
+            const ry = dataStartY + ri * rowH;
+
+            // Row number
+            ctx.fillStyle = damaged ? '#775555' : '#5577aa';
+            ctx.font = '7px Arial';
+            ctx.fillText(`${ri + 1}`, ex + 2, ry + 8);
+
+            // Cell data
+            ctx.font = '8px Courier New';
+            dataRow.forEach((cell, ci) => {
+                const cx = ex + 16 + ci * colW;
+                // Cell background alternating
+                if (ri % 2 === 0) {
+                    ctx.fillStyle = damaged ? 'rgba(60,30,30,0.3)' : 'rgba(20,30,50,0.3)';
+                    ctx.fillRect(cx - 1, ry, colW, rowH);
+                }
+                // Cell text
+                if (ci === 0) {
+                    ctx.fillStyle = damaged ? '#cc8888' : '#8899bb';
+                } else {
+                    ctx.fillStyle = damaged ? '#dd9999' : '#99ccaa';
+                }
+                ctx.fillText(cell, cx + 2, ry + 8);
+            });
+
+            // Grid lines
+            ctx.strokeStyle = damaged ? 'rgba(100,50,50,0.25)' : 'rgba(50,80,120,0.25)';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath(); ctx.moveTo(ex + 14, ry); ctx.lineTo(ex + ew, ry); ctx.stroke();
+        });
+
+        // Vertical grid lines
+        ctx.strokeStyle = damaged ? 'rgba(100,50,50,0.2)' : 'rgba(50,80,120,0.2)';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath(); ctx.moveTo(ex + 14, gridY + colHeaderH); ctx.lineTo(ex + 14, ey + eh); ctx.stroke();
+        for (let ci = 1; ci <= 3; ci++) {
+            const lx = ex + 14 + ci * colW;
+            ctx.beginPath(); ctx.moveTo(lx, gridY); ctx.lineTo(lx, ey + eh); ctx.stroke();
+        }
+
+        // === OUTER BORDER ===
+        ctx.strokeStyle = damaged ? 'rgba(200,80,80,0.6)' : 'rgba(33,115,70,0.5)';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(ex, ey, ew, eh);
+
+        // === WINDOW CONTROLS (top right) ===
+        const btnSize = 5;
+        const btnY = ey + 5;
+        // Close button (red)
+        ctx.fillStyle = '#e74c3c';
+        ctx.fillRect(ex + ew - 10, btnY, btnSize, btnSize);
+        // Maximize (yellow-ish)
+        ctx.fillStyle = '#f39c12';
+        ctx.fillRect(ex + ew - 18, btnY, btnSize, btnSize);
+        // Minimize (green)
+        ctx.fillStyle = '#27ae60';
+        ctx.fillRect(ex + ew - 26, btnY, btnSize, btnSize);
+
+        // === HP BAR (bottom edge) ===
+        if (e.maxHp > 1) {
+            const hpBarW = ew - 4;
+            const hpBarH = 3;
+            const hpBarX = ex + 2;
+            const hpBarY = ey + eh - hpBarH - 1;
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.fillRect(hpBarX, hpBarY, hpBarW, hpBarH);
+            const hpColor = hpRatio > 0.5 ? '#27ae60' : hpRatio > 0.25 ? '#f39c12' : '#e74c3c';
+            ctx.fillStyle = hpColor;
+            ctx.fillRect(hpBarX, hpBarY, hpBarW * hpRatio, hpBarH);
+        }
+
+        // === DAMAGE CRACKS ===
+        if (damaged) {
+            ctx.strokeStyle = 'rgba(255,100,100,0.4)';
+            ctx.lineWidth = 1;
+            // Draw some crack lines
+            ctx.beginPath();
+            ctx.moveTo(e.x - 10, ey + 20);
+            ctx.lineTo(e.x + 5, ey + eh / 2);
+            ctx.lineTo(e.x - 8, ey + eh - 10);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.x + 15, ey + 15);
+            ctx.lineTo(e.x + 8, ey + eh / 2 + 5);
+            ctx.stroke();
+        }
 
         ctx.restore();
     }
@@ -538,24 +699,34 @@
     // ==================== BULLETS ====================
     function drawBullet(b) {
         ctx.save();
+        // Trail
+        ctx.fillStyle = 'rgba(79,195,247,0.15)';
+        ctx.fillRect(b.x - 1.5, b.y, 3, 18);
+        ctx.fillStyle = 'rgba(79,195,247,0.08)';
+        ctx.fillRect(b.x - 3, b.y + 5, 6, 25);
+
         ctx.shadowColor = COLORS.bullet;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 12;
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(b.x - 2, b.y - 4, 4, 8);
         ctx.fillStyle = COLORS.bullet;
-        // "=" sign bullet (it's a formula!)
-        ctx.font = 'bold 14px Courier New';
+        ctx.font = 'bold 16px Courier New';
         ctx.textAlign = 'center';
-        ctx.fillText('=', b.x, b.y + 5);
+        ctx.fillText('=', b.x, b.y + 18);
         ctx.textAlign = 'left';
         ctx.restore();
     }
 
     function drawEnemyBullet(b) {
         ctx.save();
+        // Red trail
+        ctx.fillStyle = 'rgba(255,100,100,0.1)';
+        ctx.fillRect(b.x - 2, b.y - 15, 4, 15);
+
         ctx.shadowColor = COLORS.enemyBullet;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 10;
         ctx.fillStyle = COLORS.enemyBullet;
-        // Enemy shoots "#REF!" errors
-        ctx.font = 'bold 9px Courier New';
+        ctx.font = 'bold 11px Courier New';
         ctx.textAlign = 'center';
         ctx.fillText(b.text, b.x, b.y + 4);
         ctx.textAlign = 'left';
@@ -564,17 +735,9 @@
 
     // ==================== POWERUPS ====================
     function spawnPowerup(x, y) {
-        if (Math.random() > 0.15) return; // 15% chance
+        if (Math.random() > 0.15) return;
         const type = POWERUP_TYPES[Math.floor(Math.random() * POWERUP_TYPES.length)];
-        state.powerups.push({
-            x: x,
-            y: y,
-            width: 50,
-            height: 16,
-            speed: 1.5,
-            ...type,
-            age: 0,
-        });
+        state.powerups.push({ x, y, width: 60, height: 20, speed: 1.5, ...type, age: 0 });
     }
 
     function drawPowerup(p) {
@@ -583,13 +746,28 @@
         const pulse = Math.sin(p.age * 0.1) * 0.3 + 0.7;
         ctx.globalAlpha = pulse;
         ctx.shadowColor = p.color;
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 16;
+
+        // Rounded box
+        const rx = p.x - p.width / 2, ry = p.y - p.height / 2;
+        const r = 4;
         ctx.fillStyle = p.color;
-        ctx.fillRect(p.x - p.width / 2, p.y - p.height / 2, p.width, p.height);
+        ctx.beginPath();
+        ctx.moveTo(rx + r, ry);
+        ctx.lineTo(rx + p.width - r, ry);
+        ctx.arcTo(rx + p.width, ry, rx + p.width, ry + r, r);
+        ctx.lineTo(rx + p.width, ry + p.height - r);
+        ctx.arcTo(rx + p.width, ry + p.height, rx + p.width - r, ry + p.height, r);
+        ctx.lineTo(rx + r, ry + p.height);
+        ctx.arcTo(rx, ry + p.height, rx, ry + p.height - r, r);
+        ctx.lineTo(rx, ry + r);
+        ctx.arcTo(rx, ry, rx + r, ry, r);
+        ctx.fill();
+
         ctx.fillStyle = '#000';
-        ctx.font = 'bold 8px Courier New';
+        ctx.font = 'bold 9px Courier New';
         ctx.textAlign = 'center';
-        ctx.fillText(p.label, p.x, p.y + 3);
+        ctx.fillText(p.label, p.x, p.y + 4);
         ctx.textAlign = 'left';
         ctx.globalAlpha = 1;
         ctx.restore();
@@ -599,57 +777,90 @@
     function spawnExplosion(x, y, color, count) {
         for (let i = 0; i < count; i++) {
             const angle = Math.random() * Math.PI * 2;
-            const speed = Math.random() * 3 + 1;
+            const speed = Math.random() * 3.5 + 1;
             state.particles.push({
-                x: x,
-                y: y,
+                x, y,
                 vx: Math.cos(angle) * speed,
                 vy: Math.sin(angle) * speed,
-                life: 30 + Math.random() * 20,
-                maxLife: 50,
+                life: 35 + Math.random() * 20,
+                maxLife: 55,
                 color: color,
-                size: Math.random() * 3 + 1,
+                size: Math.random() * 4 + 1,
             });
         }
     }
 
     function spawnCellExplosion(x, y) {
-        // Spreadsheet cells flying out
-        const cellTexts = ['#REF!', '#N/A', '#VALUE!', '####', '#DIV/0!', 'ERR', '$0.00', '=SUM(', 'VLOOKUP('];
-        for (let i = 0; i < 6; i++) {
+        const cellTexts = ['#REF!', '#N/A', '#VALUE!', '####', '#DIV/0!', '$0.00', '=SUM(', 'VLOOKUP(', 'ERR:508', 'Circular!'];
+        for (let i = 0; i < 8; i++) {
             const angle = Math.random() * Math.PI * 2;
-            const speed = Math.random() * 2 + 0.5;
+            const speed = Math.random() * 2.5 + 0.5;
             state.particles.push({
-                x: x,
-                y: y,
+                x, y,
                 vx: Math.cos(angle) * speed,
-                vy: Math.sin(angle) * speed - 1,
-                life: 40 + Math.random() * 20,
-                maxLife: 60,
-                color: '#ff6b6b',
+                vy: Math.sin(angle) * speed - 1.5,
+                life: 50 + Math.random() * 25,
+                maxLife: 75,
+                color: ['#ff6b6b', '#ff9944', '#ffcc00', '#ff69b4'][Math.floor(Math.random() * 4)],
                 size: 0,
                 text: cellTexts[Math.floor(Math.random() * cellTexts.length)],
                 isText: true,
             });
         }
+        // Also spawn some "cell" rectangles
+        for (let i = 0; i < 6; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 3 + 1;
+            state.particles.push({
+                x, y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed - 1,
+                life: 25 + Math.random() * 15,
+                maxLife: 40,
+                color: ['#217346', '#1a5c38', '#2a9158', '#4fc3f7'][Math.floor(Math.random() * 4)],
+                size: Math.random() * 6 + 3,
+                isCell: true,
+                cellW: Math.random() * 16 + 6,
+                cellH: Math.random() * 8 + 3,
+                rotation: Math.random() * Math.PI * 2,
+                rotSpeed: (Math.random() - 0.5) * 0.2,
+            });
+        }
     }
 
     function drawParticles() {
-        state.particles.forEach((p, i) => {
+        state.particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
+            p.vy += 0.02; // slight gravity
             p.life--;
             const alpha = p.life / p.maxLife;
+
             if (p.isText) {
                 ctx.globalAlpha = alpha;
                 ctx.fillStyle = p.color;
-                ctx.font = '8px Courier New';
+                ctx.font = 'bold 9px Courier New';
                 ctx.fillText(p.text, p.x, p.y);
                 ctx.globalAlpha = 1;
-            } else {
-                ctx.fillStyle = p.color;
+            } else if (p.isCell) {
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                p.rotation += p.rotSpeed;
+                ctx.rotate(p.rotation);
                 ctx.globalAlpha = alpha;
-                ctx.fillRect(p.x, p.y, p.size, p.size);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.cellW / 2, -p.cellH / 2, p.cellW, p.cellH);
+                ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+                ctx.lineWidth = 0.5;
+                ctx.strokeRect(-p.cellW / 2, -p.cellH / 2, p.cellW, p.cellH);
+                ctx.globalAlpha = 1;
+                ctx.restore();
+            } else {
+                ctx.globalAlpha = alpha;
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
                 ctx.globalAlpha = 1;
             }
         });
@@ -658,16 +869,18 @@
 
     // ==================== FLOATING TEXTS ====================
     function addFloatingText(x, y, text, color) {
-        state.floatingTexts.push({ x, y, text, color, life: 40 });
+        state.floatingTexts.push({ x, y, text, color, life: 45 });
     }
 
     function drawFloatingTexts() {
         state.floatingTexts.forEach(ft => {
-            ft.y -= 1;
+            ft.y -= 1.2;
             ft.life--;
-            ctx.globalAlpha = ft.life / 40;
+            const alpha = ft.life / 45;
+            const scale = 1 + (1 - alpha) * 0.3; // grow slightly as they fade
+            ctx.globalAlpha = alpha;
             ctx.fillStyle = ft.color;
-            ctx.font = 'bold 12px Courier New';
+            ctx.font = `bold ${Math.round(13 * scale)}px Courier New`;
             ctx.textAlign = 'center';
             ctx.fillText(ft.text, ft.x, ft.y);
             ctx.textAlign = 'left';
@@ -696,12 +909,11 @@
 
         const p = state.player;
         if (state.powerupActive?.type === 'pivot') {
-            // Triple shot
-            state.bullets.push({ x: p.x, y: p.y - 20, speed: 8 });
-            state.bullets.push({ x: p.x - 15, y: p.y - 15, speed: 8 });
-            state.bullets.push({ x: p.x + 15, y: p.y - 15, speed: 8 });
+            state.bullets.push({ x: p.x, y: p.y - 22, speed: 9 });
+            state.bullets.push({ x: p.x - 18, y: p.y - 16, speed: 9 });
+            state.bullets.push({ x: p.x + 18, y: p.y - 16, speed: 9 });
         } else {
-            state.bullets.push({ x: p.x, y: p.y - 20, speed: 8 });
+            state.bullets.push({ x: p.x, y: p.y - 22, speed: 9 });
         }
     }
 
@@ -713,7 +925,7 @@
 
         aliveEnemies.forEach(e => {
             if (Math.random() < cfg.shootChance) {
-                const errorTexts = ['#REF!', '#N/A', '#ERR', '#DIV/0!', '####'];
+                const errorTexts = ['#REF!', '#N/A', '#ERR', '#DIV/0!', '####', '#VALUE!'];
                 state.enemyBullets.push({
                     x: e.x,
                     y: e.y + e.height / 2,
@@ -735,37 +947,28 @@
 
         const p = state.player;
 
-        // Player movement
         if ((keys['ArrowLeft'] || keys['a'] || keys['A']) && p.x > 30) p.x -= p.speed;
         if ((keys['ArrowRight'] || keys['d'] || keys['D']) && p.x < W - 30) p.x += p.speed;
         if (keys[' ']) shoot();
 
-        // Invincibility timer
         if (p.invincible > 0) p.invincible--;
 
-        // Powerup timer
         if (state.powerupActive && state.powerupActive.duration > 0) {
             state.powerupTimer -= 16;
-            if (state.powerupTimer <= 0) {
-                state.powerupActive = null;
-            }
+            if (state.powerupTimer <= 0) state.powerupActive = null;
         }
 
-        // Combo timer
         if (state.comboTimer > 0) {
             state.comboTimer -= 16;
             if (state.comboTimer <= 0) state.comboCount = 0;
         }
 
-        // Update bullets
         state.bullets.forEach(b => b.y -= b.speed);
         state.bullets = state.bullets.filter(b => b.y > -10);
 
-        // Update enemy bullets
         state.enemyBullets.forEach(b => b.y += b.speed);
         state.enemyBullets = state.enemyBullets.filter(b => b.y < H + 10);
 
-        // Update powerups
         state.powerups.forEach(pw => pw.y += pw.speed);
         state.powerups = state.powerups.filter(pw => pw.y < H + 20);
 
@@ -773,11 +976,9 @@
         if (state.powerupActive?.type === 'macro') {
             const aliveEnemies = state.enemies.filter(e => e.alive);
             if (aliveEnemies.length > 0) {
-                const closest = aliveEnemies.reduce((a, b) => {
-                    const da = Math.abs(a.x - p.x);
-                    const db = Math.abs(b.x - p.x);
-                    return da < db ? a : b;
-                });
+                const closest = aliveEnemies.reduce((a, b) =>
+                    Math.abs(a.x - p.x) < Math.abs(b.x - p.x) ? a : b
+                );
                 if (closest.x < p.x - 3) p.x -= p.speed * 0.7;
                 if (closest.x > p.x + 3) p.x += p.speed * 0.7;
                 shoot();
@@ -790,12 +991,11 @@
                 if (!e.alive) return;
                 if (checkCollision(b, e.x, e.y, e.width, e.height)) {
                     e.hp--;
-                    e.hitFlash = 5;
+                    e.hitFlash = 6;
                     state.bullets.splice(bi, 1);
 
                     if (e.hp <= 0) {
                         e.alive = false;
-                        // Score with combo multiplier
                         state.comboCount++;
                         state.comboTimer = 2000;
                         const baseScore = (5 - e.row) * 10 + state.level * 5;
@@ -803,18 +1003,16 @@
                         const points = baseScore * comboMult;
                         state.score += points;
 
-                        // Effects
-                        spawnExplosion(e.x, e.y, COLORS.gold, 12);
+                        spawnExplosion(e.x, e.y, COLORS.gold, 16);
                         spawnCellExplosion(e.x, e.y);
-                        addFloatingText(e.x, e.y - 15, `+${points}`, COLORS.gold);
+                        addFloatingText(e.x, e.y - 20, `+${points}`, COLORS.gold);
                         if (comboMult > 1) {
-                            addFloatingText(e.x, e.y - 30, `${comboMult}x COMBO!`, '#ff69b4');
+                            addFloatingText(e.x, e.y - 40, `${comboMult}x COMBO!`, '#ff69b4');
                         }
-
-                        // Spawn powerup chance
                         spawnPowerup(e.x, e.y);
                     } else {
-                        spawnExplosion(e.x, e.y, '#fff', 4);
+                        spawnExplosion(e.x, e.y, '#fff', 5);
+                        addFloatingText(e.x, e.y - 20, 'CRACKED!', '#ff9944');
                     }
                 }
             });
@@ -823,7 +1021,7 @@
         // Enemy bullet - player collision
         if (p.invincible <= 0) {
             state.enemyBullets.forEach((b, bi) => {
-                if (checkCollision(b, p.x, p.y, 40, 30)) {
+                if (checkCollision(b, p.x, p.y, 44, 34)) {
                     state.enemyBullets.splice(bi, 1);
                     playerHit();
                 }
@@ -832,17 +1030,17 @@
 
         // Powerup - player collision
         state.powerups.forEach((pw, pi) => {
-            if (checkCollision({ x: pw.x, y: pw.y }, p.x, p.y, 50, 40)) {
+            if (checkCollision({ x: pw.x, y: pw.y }, p.x, p.y, 60, 44)) {
                 state.powerups.splice(pi, 1);
                 if (pw.type === 'ctrl_z') {
                     state.lives++;
-                    addFloatingText(p.x, p.y - 30, 'CTRL+Z! +1 LIFE', '#4caf50');
+                    addFloatingText(p.x, p.y - 35, 'CTRL+Z! +1 LIFE', '#4caf50');
                 } else {
                     state.powerupActive = pw;
                     state.powerupTimer = pw.duration;
-                    addFloatingText(p.x, p.y - 30, pw.desc, pw.color);
+                    addFloatingText(p.x, p.y - 35, pw.desc, pw.color);
                 }
-                spawnExplosion(pw.x, pw.y, pw.color, 8);
+                spawnExplosion(pw.x, pw.y, pw.color, 10);
             }
         });
 
@@ -855,28 +1053,22 @@
 
         let hitEdge = false;
         const cfg = LEVELS[state.level - 1];
-        const speedMult = 1 + (1 - aliveEnemies.length / state.enemies.length) * 1.5; // Speed up as fewer enemies
+        const speedMult = 1 + (1 - aliveEnemies.length / state.enemies.length) * 1.5;
 
         aliveEnemies.forEach(e => {
             e.x += state.enemyDir * cfg.speed * speedMult;
-            if (e.x + e.width / 2 > W - 10 || e.x - e.width / 2 < 10) hitEdge = true;
+            if (e.x + e.width / 2 > W - 5 || e.x - e.width / 2 < 5) hitEdge = true;
         });
 
         if (hitEdge) {
             state.enemyDir *= -1;
             aliveEnemies.forEach(e => {
-                e.y += 15;
-                // Check if enemies reached player
-                if (e.y + e.height / 2 > p.y - 20) {
-                    gameOver();
-                }
+                e.y += 18;
+                if (e.y + e.height / 2 > p.y - 25) gameOver();
             });
         }
 
-        // Enemy shooting
         enemyShoot();
-
-        // Screen shake
         if (state.shakeTimer > 0) state.shakeTimer--;
 
         // Update HUD
@@ -889,15 +1081,12 @@
 
     function playerHit() {
         state.lives--;
-        state.player.invincible = 90; // ~1.5 sec
-        state.shakeTimer = 10;
+        state.player.invincible = 90;
+        state.shakeTimer = 12;
         state.powerupActive = null;
-        spawnExplosion(state.player.x, state.player.y, COLORS.danger, 15);
-        addFloatingText(state.player.x, state.player.y - 30, '#REF! ERROR', COLORS.danger);
-
-        if (state.lives <= 0) {
-            gameOver();
-        }
+        spawnExplosion(state.player.x, state.player.y, COLORS.danger, 18);
+        addFloatingText(state.player.x, state.player.y - 35, '#REF! ERROR', COLORS.danger);
+        if (state.lives <= 0) gameOver();
     }
 
     function gameOver() {
@@ -915,10 +1104,7 @@
     }
 
     function nextLevel() {
-        if (state.level >= LEVELS.length) {
-            winGame();
-            return;
-        }
+        if (state.level >= LEVELS.length) { winGame(); return; }
         state.level++;
         state.powerupActive = null;
         state.bullets = [];
@@ -927,10 +1113,8 @@
         state.enemies = createEnemies(state.level);
         state.enemyDir = 1;
 
-        // Show level banner
         const banner = document.getElementById('level-banner');
-        const cfg = LEVELS[state.level - 1];
-        banner.textContent = `LEVEL ${state.level}: ${cfg.name}`;
+        banner.textContent = `LEVEL ${state.level}: ${LEVELS[state.level - 1].name}`;
         banner.classList.add('show');
         setTimeout(() => banner.classList.remove('show'), 2000);
     }
@@ -953,68 +1137,61 @@
     function draw() {
         ctx.save();
 
-        // Screen shake
         if (state.shakeTimer > 0) {
-            const shakeX = (Math.random() - 0.5) * 6;
-            const shakeY = (Math.random() - 0.5) * 6;
-            ctx.translate(shakeX, shakeY);
+            ctx.translate((Math.random() - 0.5) * 8, (Math.random() - 0.5) * 8);
         }
 
-        // Clear
-        ctx.fillStyle = '#0d0d1a';
+        ctx.fillStyle = '#0a0a16';
         ctx.fillRect(-5, -5, W + 10, H + 10);
 
         drawGrid();
         drawStarfield();
 
-        // Draw enemies
         state.enemies.forEach(drawEnemy);
-
-        // Draw bullets
         state.bullets.forEach(drawBullet);
         state.enemyBullets.forEach(drawEnemyBullet);
-
-        // Draw powerups
         state.powerups.forEach(drawPowerup);
-
-        // Draw player
         drawPlayer();
-
-        // Draw particles
         drawParticles();
         drawFloatingTexts();
 
         // Combo display
         if (state.comboCount > 1) {
             ctx.fillStyle = '#ff69b4';
-            ctx.font = 'bold 14px Courier New';
+            ctx.font = 'bold 16px Courier New';
             ctx.textAlign = 'right';
-            ctx.globalAlpha = 0.8;
-            ctx.fillText(`COMBO: ${state.comboCount}x`, W - 15, H - 15);
+            ctx.globalAlpha = 0.85;
+            ctx.fillText(`COMBO: ${state.comboCount}x`, W - 20, H - 18);
             ctx.globalAlpha = 1;
             ctx.textAlign = 'left';
         }
 
         // Powerup bar
         if (state.powerupActive && state.powerupActive.duration > 0) {
-            const barW = 120;
+            const barW = 140;
             const pct = state.powerupTimer / state.powerupActive.duration;
-            ctx.fillStyle = 'rgba(0,0,0,0.5)';
-            ctx.fillRect(W / 2 - barW / 2 - 2, H - 22, barW + 4, 12);
+            ctx.fillStyle = 'rgba(0,0,0,0.6)';
+            ctx.fillRect(W / 2 - barW / 2 - 2, H - 25, barW + 4, 14);
             ctx.fillStyle = state.powerupActive.color;
-            ctx.fillRect(W / 2 - barW / 2, H - 20, barW * pct, 8);
+            ctx.fillRect(W / 2 - barW / 2, H - 23, barW * pct, 10);
+            ctx.fillStyle = '#fff';
+            ctx.font = '8px Courier New';
+            ctx.textAlign = 'center';
+            ctx.fillText(state.powerupActive.label, W / 2, H - 15);
+            ctx.textAlign = 'left';
         }
 
         // Pause overlay
         if (state.paused) {
-            ctx.fillStyle = 'rgba(0,0,0,0.6)';
+            ctx.fillStyle = 'rgba(0,0,0,0.65)';
             ctx.fillRect(0, 0, W, H);
             ctx.fillStyle = '#fff';
-            ctx.font = 'bold 30px Courier New';
+            ctx.font = 'bold 34px Courier New';
             ctx.textAlign = 'center';
             ctx.fillText('PAUSED', W / 2, H / 2 - 10);
-            ctx.font = '14px Courier New';
-            ctx.fillText('Press P to resume', W / 2, H / 2 + 20);
+            ctx.font = '15px Courier New';
+            ctx.fillStyle = '#aaa';
+            ctx.fillText('Press P to resume', W / 2, H / 2 + 22);
             ctx.textAlign = 'left';
         }
 
@@ -1029,14 +1206,12 @@
         if (state.running) requestAnimationFrame(gameLoop);
     }
 
-    // ==================== START GAME ====================
+    // ==================== START ====================
     function startGame() {
-        // Hide all screens
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-over-screen').classList.add('hidden');
         document.getElementById('win-screen').classList.add('hidden');
 
-        // Reset state
         state.score = 0;
         state.lives = 3;
         state.level = 1;
@@ -1059,20 +1234,18 @@
 
         initStarfield();
 
-        // Show level banner
         const banner = document.getElementById('level-banner');
-        const cfg = LEVELS[0];
-        banner.textContent = `LEVEL 1: ${cfg.name}`;
+        banner.textContent = `LEVEL 1: ${LEVELS[0].name}`;
         banner.classList.add('show');
         setTimeout(() => banner.classList.remove('show'), 2000);
 
         gameLoop();
     }
 
-    // Initialize starfield for start screen background
+    // Start screen animated bg
     initStarfield();
     function drawStartBg() {
-        ctx.fillStyle = '#0d0d1a';
+        ctx.fillStyle = '#0a0a16';
         ctx.fillRect(0, 0, W, H);
         drawGrid();
         drawStarfield();
