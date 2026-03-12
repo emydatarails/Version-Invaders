@@ -37,19 +37,10 @@
             letter-spacing: 2px;
         }
 
-        #game-header .stats {
-            display: flex;
-            gap: 24px;
-            font-size: 15px;
-        }
-
+        #game-header .stats { display: flex; gap: 24px; font-size: 15px; }
         .stat-label { color: #888; }
         .stat-value { color: #4fc3f7; font-weight: bold; }
-
-        #hero-label {
-            color: #ffd700;
-            font-weight: bold;
-        }
+        #hero-label { color: #ffd700; font-weight: bold; }
 
         #game-canvas {
             border: 2px solid #217346;
@@ -57,7 +48,6 @@
             cursor: none;
         }
 
-        /* ===== SCREENS ===== */
         .overlay-screen {
             position: absolute;
             top: 50%;
@@ -66,57 +56,54 @@
             text-align: center;
             z-index: 10;
             background: rgba(10, 10, 26, 0.97);
-            padding: 36px 44px;
+            padding: 32px 40px;
             border: 2px solid #217346;
             border-radius: 12px;
             box-shadow: 0 0 60px rgba(33, 115, 70, 0.4);
+            max-height: 95vh;
+            overflow-y: auto;
         }
 
         #start-screen h1 {
-            font-size: 38px;
+            font-size: 36px;
             color: #217346;
             text-shadow: 0 0 25px #217346;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             letter-spacing: 3px;
         }
 
         #start-screen h2 {
             font-size: 16px;
             color: #4fc3f7;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             font-weight: normal;
         }
 
-        .powered-by {
-            font-size: 11px;
-            color: #666;
-            margin-bottom: 18px;
-        }
+        .powered-by { font-size: 11px; color: #666; margin-bottom: 14px; }
         .powered-by span { color: #217346; font-weight: bold; }
 
         #start-screen .lore {
             font-size: 12px;
             color: #999;
-            margin-bottom: 22px;
-            line-height: 1.8;
-            max-width: 540px;
+            margin-bottom: 18px;
+            line-height: 1.7;
+            max-width: 560px;
             font-style: italic;
         }
 
-        /* ===== HERO SELECT ===== */
         .hero-select-title {
-            font-size: 16px;
+            font-size: 15px;
             color: #ffd700;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             letter-spacing: 1px;
         }
 
         .hero-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-            max-width: 620px;
+            gap: 9px;
+            margin-bottom: 16px;
+            max-width: 660px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -125,7 +112,7 @@
             background: rgba(20, 20, 50, 0.8);
             border: 2px solid #333;
             border-radius: 8px;
-            padding: 12px 10px;
+            padding: 10px 8px 8px;
             cursor: pointer;
             transition: all 0.25s;
             text-align: center;
@@ -144,40 +131,19 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
-        .hero-card .hero-icon {
-            font-size: 28px;
-            margin-bottom: 4px;
-        }
-
-        .hero-card .hero-name {
-            font-size: 11px;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 3px;
-        }
-
-        .hero-card .hero-benefit {
-            font-size: 9px;
-            color: #4fc3f7;
-            margin-bottom: 4px;
-        }
-
-        .hero-card .hero-power {
-            font-size: 9px;
-            color: #aaa;
-            line-height: 1.4;
-        }
-
-        .hero-card .hero-power strong {
-            color: #ffd700;
-        }
+        .hero-card .hero-icon { font-size: 26px; margin-bottom: 2px; }
+        .hero-card .hero-name { font-size: 10px; font-weight: bold; color: #fff; margin-bottom: 2px; }
+        .hero-card .hero-tagline { font-size: 8px; color: #ffd700; margin-bottom: 3px; font-style: italic; }
+        .hero-card .hero-benefit { font-size: 8px; color: #4fc3f7; margin-bottom: 3px; }
+        .hero-card .hero-power { font-size: 8px; color: #aaa; line-height: 1.3; }
+        .hero-card .hero-power strong { color: #ffd700; }
 
         .btn-start {
             background: linear-gradient(180deg, #217346, #185a35);
             color: white;
             border: none;
-            padding: 14px 40px;
-            font-size: 16px;
+            padding: 13px 38px;
+            font-size: 15px;
             font-family: 'Courier New', monospace;
             cursor: pointer;
             border-radius: 6px;
@@ -190,31 +156,21 @@
             box-shadow: 0 0 25px rgba(33, 115, 70, 0.6);
         }
 
-        .controls-hint {
-            margin-top: 16px;
-            font-size: 11px;
-            color: #555;
-        }
+        .controls-hint { margin-top: 14px; font-size: 11px; color: #555; }
         .controls-hint span { color: #4fc3f7; }
 
-        #game-over-screen h1 { font-size: 32px; margin-bottom: 12px; color: #ff4444; text-shadow: 0 0 25px #ff4444; }
-        #win-screen h1 { font-size: 32px; margin-bottom: 12px; color: #217346; text-shadow: 0 0 25px #217346; }
-        #game-over-screen p, #win-screen p { margin-bottom: 8px; font-size: 14px; color: #aaa; }
-        .final-score { font-size: 24px; color: #4fc3f7; margin: 14px 0; }
+        #game-over-screen h1 { font-size: 30px; margin-bottom: 10px; color: #ff4444; text-shadow: 0 0 25px #ff4444; }
+        #win-screen h1 { font-size: 30px; margin-bottom: 10px; color: #217346; text-shadow: 0 0 25px #217346; }
+        #game-over-screen p, #win-screen p { margin-bottom: 8px; font-size: 13px; color: #aaa; }
+        .final-score { font-size: 22px; color: #4fc3f7; margin: 12px 0; }
         .hidden { display: none !important; }
 
         .level-banner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 28px;
-            color: #217346;
-            text-shadow: 0 0 25px #217346;
-            z-index: 5;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s;
+            font-size: 28px; color: #217346; text-shadow: 0 0 25px #217346;
+            z-index: 5; pointer-events: none;
+            opacity: 0; transition: opacity 0.5s;
         }
         .level-banner.show { opacity: 1; }
     </style>
@@ -233,50 +189,49 @@
     <canvas id="game-canvas" width="1100" height="680"></canvas>
     <div id="level-banner" class="level-banner"></div>
 
-    <!-- ===== START / HERO SELECT SCREEN ===== -->
+    <!-- START SCREEN -->
     <div id="start-screen" class="overlay-screen">
         <h1>VERSION INVADERS</h1>
         <h2>FP&A Superhero Edition</h2>
-        <div class="powered-by">Powered by <span>Datarails</span> | The FP&A Platform for Excel Heroes</div>
+        <div class="powered-by">Powered by <span>Datarails</span> | Where FP&A Heroes Are Born</div>
         <div class="lore">
-            "The shared drive has fallen. Rogue Excel versions multiply unchecked.<br>
-            <strong style="color:#ff6b6b">Budget_Final_v2_FINAL_REALLY_FINAL.xlsx</strong> has spawned again.<br><br>
-            Only a <strong style="color:#ffd700">Datarails-powered FP&A Superhero</strong> can restore order<br>
-            and achieve the <strong style="color:#4fc3f7">Single Source of Truth</strong>."
+            "It's 11 PM on a Tuesday. Month-end close is tomorrow.<br>
+            Someone just emailed <strong style="color:#ff6b6b">Budget_Final_v2_FINAL_REALLY_FINAL_USE_THIS (2).xlsx</strong><br>
+            and it doesn't match the other 47 versions on the shared drive.<br><br>
+            But you... you have <strong style="color:#ffd700">Datarails</strong>.<br>
+            You're not just an analyst. You're a <strong style="color:#4fc3f7">superhero</strong>."
         </div>
 
         <div class="hero-select-title">CHOOSE YOUR HERO</div>
         <div class="hero-grid" id="hero-grid"></div>
 
-        <button class="btn-start" id="btn-start" onclick="startGame()">START MONTH-END CLOSE</button>
+        <button class="btn-start" id="btn-start" onclick="startGame()">SAVE THE SPREADSHEETS</button>
         <div class="controls-hint">
-            <span>[Arrow Keys / A-D]</span> Move &nbsp;|&nbsp; <span>[Space]</span> Fire &nbsp;|&nbsp; <span>[E]</span> Special &nbsp;|&nbsp; <span>[P]</span> Pause
+            <span>[Arrows / A-D]</span> Move &nbsp;|&nbsp; <span>[Space]</span> Fire &nbsp;|&nbsp; <span>[E]</span> Special &nbsp;|&nbsp; <span>[P]</span> Pause
         </div>
     </div>
 
-    <!-- ===== GAME OVER ===== -->
+    <!-- GAME OVER -->
     <div id="game-over-screen" class="overlay-screen hidden">
-        <h1>AUDIT FAILED</h1>
-        <p>The versions have overwhelmed you...</p>
-        <p>The CFO is not pleased.</p>
+        <h1 id="gameover-title">AUDIT FAILED</h1>
+        <p id="gameover-sub"></p>
         <div class="final-score">SCORE: <span id="final-score">0</span></div>
         <p id="game-over-message"></p>
-        <button class="btn-start" onclick="showStartScreen()">TRY AGAIN</button>
+        <button class="btn-start" onclick="showStartScreen()">REQUEST A RECOUNT</button>
     </div>
 
-    <!-- ===== WIN ===== -->
+    <!-- WIN -->
     <div id="win-screen" class="overlay-screen hidden">
         <h1>SINGLE VERSION ACHIEVED!</h1>
-        <p>You've eliminated all rogue versions!</p>
-        <p>The CFO has promoted you to VP of FP&A.</p>
+        <p id="win-sub"></p>
         <div class="final-score">FINAL SCORE: <span id="win-score">0</span></div>
         <p id="win-message"></p>
-        <button class="btn-start" onclick="showStartScreen()">PLAY AGAIN</button>
+        <button class="btn-start" onclick="showStartScreen()">PLAY AGAIN (v2_FINAL)</button>
     </div>
 
     <script>
     // =====================================================
-    //  GAME CONFIG
+    //  CANVAS
     // =====================================================
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
@@ -284,117 +239,123 @@
     const H = canvas.height;
 
     // =====================================================
-    //  HEROES - each based on a Datarails benefit
+    //  HEROES
+    //  Each based on a personal benefit Datarails gives you
     // =====================================================
     const HEROES = [
         {
-            id: 'consolidator',
-            name: 'THE CONSOLIDATOR',
-            icon: '\u{1F300}',
-            benefit: 'Data Consolidation',
-            benefitDetail: 'Pulls from 200+ sources into one',
-            power: 'Wide spread shot',
-            powerDetail: 'Fires 5 beams covering a wide arc',
-            color: '#4fc3f7',
-            colorDark: '#1a6b8a',
-            shotType: 'spread',
-            shotCooldown: 300,
-            speed: 5,
-            specialName: 'MEGA CONSOLIDATION',
-            specialDesc: 'Blast all on-screen enemies',
-            specialCooldown: 18000,
-        },
-        {
-            id: 'singlesource',
-            name: 'SINGLE SOURCE',
-            icon: '\u{1F3AF}',
-            benefit: 'Single Source of Truth',
-            benefitDetail: 'One version. No duplicates. Ever.',
+            id: 'captain_version',
+            name: 'CAPTAIN VERSION',
+            icon: '\u{1F6E1}\uFE0F',
+            tagline: '"I can do this all day... with one file."',
+            benefit: 'Never chase Budget_Final_v27 again',
+            benefitDetail: 'Datarails gives you automatic version control so you always work from one source of truth. Your days of emailing "which one is the latest?" are over.',
             power: 'Piercing beam',
-            powerDetail: 'Beam passes through all enemies in a line',
-            color: '#ffd700',
-            colorDark: '#8a7a00',
+            powerDetail: 'One shot, one truth. Beam passes through ALL enemies in a line.',
+            color: '#4fc3f7',
+            colorDark: '#1a5a7a',
             shotType: 'pierce',
-            shotCooldown: 400,
+            shotCooldown: 380,
             speed: 5,
-            specialName: 'TRUTH LASER',
-            specialDesc: 'Giant beam clears a column',
+            specialName: 'ONE TRUE FILE',
+            specialDesc: 'Column-wide truth beam',
             specialCooldown: 15000,
         },
         {
-            id: 'autopilot',
-            name: 'AUTOPILOT',
-            icon: '\u{26A1}',
-            benefit: 'Automation',
-            benefitDetail: 'Automates repetitive FP&A tasks',
-            power: 'Rapid auto-fire',
-            powerDetail: 'Fires 2x faster with auto-aim assist',
-            color: '#ff69b4',
-            colorDark: '#8a2060',
-            shotType: 'rapid',
-            shotCooldown: 140,
-            speed: 6,
-            specialName: 'FULL AUTOMATION',
-            specialDesc: '5s of insane auto-fire burst',
-            specialCooldown: 16000,
+            id: 'the_bulk',
+            name: 'THE INCREDIBLE BULK',
+            icon: '\u{1F4AA}',
+            tagline: '"You won\'t like me when I\'m consolidating."',
+            benefit: 'Upload 200 files while others copy-paste',
+            benefitDetail: 'Datarails auto-consolidates from 200+ sources. While your colleagues are still copy-pasting from 12 tabs, you\'re already at happy hour.',
+            power: '5-way spread shot',
+            powerDetail: 'Covers a massive area. Because consolidation should be wide, not deep in your soul.',
+            color: '#66bb6a',
+            colorDark: '#2e7d32',
+            shotType: 'spread',
+            shotCooldown: 320,
+            speed: 4,
+            specialName: 'MEGA MERGE',
+            specialDesc: 'Damages every enemy on screen',
+            specialCooldown: 18000,
         },
         {
-            id: 'genius',
-            name: 'FP&A GENIUS',
-            icon: '\u{1F9E0}',
-            benefit: 'AI-Powered Insights',
-            benefitDetail: 'AI finds anomalies & trends instantly',
-            power: 'Homing formulas',
-            powerDetail: 'Shots track and seek the nearest enemy',
-            color: '#9c27b0',
-            colorDark: '#5a1068',
-            shotType: 'homing',
-            shotCooldown: 350,
-            speed: 5,
-            specialName: 'AI ANALYSIS',
-            specialDesc: 'Reveals & damages all enemies',
-            specialCooldown: 17000,
-        },
-        {
-            id: 'closer',
-            name: 'THE CLOSER',
-            icon: '\u{23F1}',
-            benefit: 'Month-End Close',
-            benefitDetail: 'Streamlines the close process',
-            power: 'Time warp field',
-            powerDetail: 'Enemies move 40% slower permanently',
-            color: '#00e676',
-            colorDark: '#007a3e',
+            id: 'iron_closer',
+            name: 'IRON CLOSER',
+            icon: '\u{1F525}',
+            tagline: '"I am... month-end close."',
+            benefit: 'Close the books in days, not weeks',
+            benefitDetail: 'Datarails streamlines your month-end close so you finish before the pizza arrives. Your weekends are yours again.',
+            power: 'Time warp',
+            powerDetail: 'Enemies move 40% slower. Because you now close so fast, time literally bends around you.',
+            color: '#ef5350',
+            colorDark: '#8e1a1a',
             shotType: 'normal',
-            shotCooldown: 250,
+            shotCooldown: 220,
             speed: 6,
             enemySpeedMult: 0.6,
-            specialName: 'TIME FREEZE',
+            specialName: 'HARD CLOSE',
             specialDesc: 'Freezes all enemies for 4s',
             specialCooldown: 14000,
         },
         {
-            id: 'cashguardian',
-            name: 'CASH GUARDIAN',
-            icon: '\u{1F6E1}',
-            benefit: 'Cash Management',
-            benefitDetail: 'Real-time visibility & protection',
-            power: 'Deployable shield',
-            powerDetail: 'Shield absorbs enemy fire in front of you',
-            color: '#26c6da',
-            colorDark: '#0e6670',
-            shotType: 'normal',
-            shotCooldown: 260,
+            id: 'forecast_man',
+            name: 'FORECAST-MAN',
+            icon: '\u{1F578}\uFE0F',
+            tagline: '"My FP&A sense is tingling."',
+            benefit: 'See the future before the CFO asks',
+            benefitDetail: 'Datarails AI spots trends and anomalies before anyone else. You\'ll answer the CFO\'s question before they finish asking it.',
+            power: 'Homing formulas',
+            powerDetail: 'Shots seek and track enemies. Your forecasts are so accurate, they find problems on their own.',
+            color: '#ab47bc',
+            colorDark: '#5a1068',
+            shotType: 'homing',
+            shotCooldown: 360,
             speed: 5,
-            specialName: 'CASH FORTRESS',
-            specialDesc: 'Full invincibility for 5s',
+            specialName: 'CLAIRVOYANCE',
+            specialDesc: 'AI scans & damages all enemies',
+            specialCooldown: 17000,
+        },
+        {
+            id: 'vlookuperine',
+            name: 'VLOOKUP-ERINE',
+            icon: '\u{1F43E}',
+            tagline: '"I\'m the best at what I do. =VLOOKUP."',
+            benefit: 'Stay in Excel. But on steroids.',
+            benefitDetail: 'Datarails is 100% Excel-native. You keep all your formulas, shortcuts, and muscle memory - but now with superpowers. No retraining needed.',
+            power: 'Rapid-fire formulas',
+            powerDetail: 'The fastest keyboard in FP&A. Shoots 2x faster because you never left Excel.',
+            color: '#ffa726',
+            colorDark: '#8a5a00',
+            shotType: 'rapid',
+            shotCooldown: 130,
+            speed: 6,
+            specialName: 'BERSERKER MODE',
+            specialDesc: '5s of insane auto-fire + auto-aim',
             specialCooldown: 16000,
+        },
+        {
+            id: 'black_dashboard',
+            name: 'BLACK DASHBOARD',
+            icon: '\u{1F981}',
+            tagline: '"Dashboards forever."',
+            benefit: 'Reports so good the board applauds',
+            benefitDetail: 'Datarails turns your data into stunning dashboards and board-ready presentations. You went from "can you make this prettier" to standing ovations.',
+            power: 'Area damage blasts',
+            powerDetail: 'Each shot explodes on impact, damaging nearby enemies. Your reports have that kind of impact too.',
+            color: '#ffd740',
+            colorDark: '#8a7a10',
+            shotType: 'explosive',
+            shotCooldown: 400,
+            speed: 5,
+            specialName: 'BOARD REPORT',
+            specialDesc: 'Carpet-bomb the entire screen',
+            specialCooldown: 19000,
         },
     ];
 
     let selectedHeroIdx = 0;
 
-    // Build hero select grid
     function buildHeroGrid() {
         const grid = document.getElementById('hero-grid');
         grid.innerHTML = '';
@@ -404,14 +365,13 @@
             card.innerHTML = `
                 <div class="hero-icon">${hero.icon}</div>
                 <div class="hero-name" style="color:${hero.color}">${hero.name}</div>
+                <div class="hero-tagline">${hero.tagline}</div>
                 <div class="hero-benefit">${hero.benefit}</div>
-                <div class="hero-power"><strong>${hero.power}</strong><br>${hero.powerDetail}</div>
+                <div class="hero-power"><strong>${hero.power}</strong> | [E] ${hero.specialName}</div>
             `;
             card.onclick = () => {
                 selectedHeroIdx = i;
-                document.querySelectorAll('.hero-card').forEach((c, j) => {
-                    c.classList.toggle('selected', j === i);
-                });
+                document.querySelectorAll('.hero-card').forEach((c, j) => c.classList.toggle('selected', j === i));
             };
             grid.appendChild(card);
         });
@@ -422,49 +382,59 @@
         document.getElementById('start-screen').classList.remove('hidden');
         document.getElementById('game-over-screen').classList.add('hidden');
         document.getElementById('win-screen').classList.add('hidden');
-        state.running = false;
-        state.gameOver = false;
-        state.won = false;
+        state.running = false; state.gameOver = false; state.won = false;
         buildHeroGrid();
         drawStartBgLoop();
     }
 
     // =====================================================
-    //  GAME STATE
+    //  STATE
     // =====================================================
     let state = {
         score: 0, lives: 3, level: 1,
         paused: false, running: false, gameOver: false, won: false,
-        hero: null,
-        player: null,
+        hero: null, player: null,
         bullets: [], enemies: [], enemyBullets: [],
         particles: [], powerups: [], starfield: [],
-        shields: [],
         enemyDir: 1, lastShotTime: 0,
         powerupActive: null, powerupTimer: 0,
-        shakeTimer: 0,
-        comboCount: 0, comboTimer: 0,
+        shakeTimer: 0, comboCount: 0, comboTimer: 0,
         floatingTexts: [],
-        specialCooldownTimer: 0,
-        specialActive: false, specialTimer: 0,
+        specialCooldownTimer: 0, specialActive: false, specialTimer: 0,
         freezeTimer: 0,
     };
 
     const COLORS = {
         excelGreen: '#217346', excelDarkGreen: '#185a35', excelLightGreen: '#2a9158',
-        gridLine: '#2a2a44', playerGlow: '#4fc3f7', bullet: '#4fc3f7',
-        enemyBullet: '#ff6b6b', gold: '#ffd700', danger: '#ff4444',
+        gridLine: '#2a2a44', gold: '#ffd700', danger: '#ff4444', enemyBullet: '#ff6b6b',
     };
 
+    // Version names - every FP&A person's nightmare
     const VERSION_NAMES = [
-        'Budget_Final.xlsx', 'Budget_Final_v2.xlsx', 'Budget_FINAL_FINAL.xlsx',
-        'Budget_USE_THIS.xlsx', 'Budget_v3_John.xlsx', 'Budget_APPROVED.xlsx',
-        'Budget_OLD_DONT_USE.xlsx', 'Budget_Copy (2).xlsx', 'Budget_NEW_NEW.xlsx',
-        'Budget_LATEST.xlsx', 'Forecast_Final.xlsx', 'Forecast_v2_REAL.xlsx',
-        'Forecast_UPDATED.xlsx', 'Forecast_FIXED.xlsx', 'Model_backup.xlsx',
-        'Model_backup (1).xlsx', 'Model_WORKING.xlsx', 'PnL_Final_v4.xlsx',
-        'Consolidation_OLD.xlsx', 'Report_SEND_THIS.xlsx', 'Budget_REALLY_FINAL.xlsx',
-        'Budget_DONT_EDIT.xlsx', 'Budget_LOCKED.xlsx', 'Forecast_CFO_edits.xlsx',
+        'Budget_Final.xlsx',
+        'Budget_Final_v2.xlsx',
+        'Budget_FINAL_FINAL.xlsx',
+        'Budget_USE_THIS_ONE.xlsx',
+        'Budget_v3_Johns_edits.xlsx',
+        'Budget_APPROVED_maybe.xlsx',
+        'Budget_OLD_DONT_USE.xlsx',
+        'Budget_Copy (2).xlsx',
+        'Budget_Copy (7).xlsx',
+        'Budget_NEW_from_Sarah.xlsx',
+        'Budget_LATEST_I_think.xlsx',
+        'Forecast_Final_final.xlsx',
+        'Forecast_v2_REAL.xlsx',
+        'Forecast_UPDATED_wed.xlsx',
+        'Forecast_CFO_changes.xlsx',
+        'Model_backup_backup.xlsx',
+        'Model_DO_NOT_DELETE.xlsx',
+        'PnL_Final_v4_old.xlsx',
+        'Report_SEND_THIS_ONE.xlsx',
+        'Consolidation_broken.xlsx',
+        'Budget_from_email.xlsx',
+        'Budget_desktop_Oct12.xlsx',
+        'Budget_USB_stick.xlsx',
+        'Forecast_idk_anymore.xlsx',
     ];
 
     const FAKE_DATA = [
@@ -474,23 +444,88 @@
         ['Headcount','142','138'], ['CapEx','$89','$102'], ['Depr.','$34','$37'],
     ];
 
+    // Level names - the FP&A calendar of dread
     const LEVELS = [
-        { name: 'Q1 Close', rows: 3, cols: 6, speed: 0.4, shootChance: 0.001 },
+        { name: 'Monday Morning Standup', rows: 3, cols: 6, speed: 0.4, shootChance: 0.001 },
         { name: 'Mid-Year Reforecast', rows: 3, cols: 7, speed: 0.5, shootChance: 0.0015 },
-        { name: 'Budget Season', rows: 4, cols: 7, speed: 0.6, shootChance: 0.002 },
+        { name: 'Budget Season (send help)', rows: 4, cols: 7, speed: 0.6, shootChance: 0.002 },
         { name: 'Year-End Audit', rows: 4, cols: 7, speed: 0.75, shootChance: 0.0025 },
-        { name: 'Board Presentation', rows: 4, cols: 8, speed: 0.9, shootChance: 0.003 },
+        { name: 'THE CFO NEEDS IT NOW', rows: 4, cols: 8, speed: 0.9, shootChance: 0.003 },
     ];
 
     const POWERUP_TYPES = [
         { type: 'pivot', label: 'PIVOT TABLE', color: '#ffd700', duration: 5000, desc: 'Triple shot!' },
         { type: 'vlookup', label: 'VLOOKUP', color: '#ff69b4', duration: 4000, desc: 'Rapid fire!' },
         { type: 'macro', label: 'VBA MACRO', color: '#9c27b0', duration: 6000, desc: 'Auto-aim!' },
-        { type: 'ctrl_z', label: 'CTRL+Z', color: '#4caf50', duration: 0, desc: 'Extra life!' },
+        { type: 'ctrl_z', label: 'CTRL+Z', color: '#4caf50', duration: 0, desc: '+1 Life!' },
+        { type: 'coffee', label: 'COLD BREW', color: '#8d6e63', duration: 4000, desc: 'Speed boost!' },
     ];
 
     // =====================================================
-    //  STARFIELD
+    //  HUMOR BANKS
+    // =====================================================
+    const KILL_QUIPS = [
+        'Version deleted!', 'Gone. Like your free time.',
+        'Consolidated!', 'Back to one file!',
+        'The CFO approves.', 'Shared drive cleansed.',
+        'One less email.', 'R.I.P. _v2_Final.',
+        'Satisfying.', 'That felt personal.',
+        'No more copy-paste!', 'Ctrl+Delete!',
+    ];
+
+    const GAMEOVER_TITLES = [
+        'AUDIT FAILED',
+        'SPREADSHEET DOWN',
+        'BUDGET REJECTED',
+        'VERSION OVERFLOW',
+        '#REF! #REF! #REF!',
+    ];
+
+    const GAMEOVER_SUBS = [
+        'The versions have overwhelmed your shared drive.',
+        'Someone saved over your master file.',
+        'The CFO found 3 different revenue numbers.',
+        'You got buried under 47 "final" versions.',
+        'Your laptop ran out of RAM from all the open Excel files.',
+    ];
+
+    const GAMEOVER_MESSAGES = [
+        'Maybe try Datarails next quarter?',
+        'The intern just emailed Budget_v48.',
+        '"Per my last email..." - The CFO',
+        'Have you tried turning your career off and on?',
+        'Somewhere, a VLOOKUP is returning #N/A in your honor.',
+        'The shared drive sends its regards.',
+        'Your pivot table just got un-pivoted.',
+        'Even Ctrl+Z can\'t fix this.',
+    ];
+
+    const WIN_SUBS = [
+        'The shared drive has been cleansed. There is only ONE file.',
+        'Every version has been consolidated. The CFO is weeping with joy.',
+        'You did it. No more "which Budget file should I use?" emails.',
+        'Finance Slack channel is silent. For the first time ever.',
+    ];
+
+    const WIN_MESSAGES = [
+        'The CFO just Slacked you a crown emoji.',
+        'You\'ve been promoted to VP of Not Losing Files.',
+        'The auditors have nothing to audit. They\'re confused.',
+        'Someone wrote "FP&A Hero" on your parking spot.',
+        'The board presentation was 10/10. You used Datarails.',
+        'Your Excel skills are now classified as a superpower.',
+    ];
+
+    const LEVEL_QUIPS = [
+        '', // Level 1 has no quip (it's the start)
+        'Versions are multiplying...',
+        'Everyone has their own "final" file!',
+        'The auditors brought magnifying glasses.',
+        'THE CFO IS IN THE BUILDING.',
+    ];
+
+    // =====================================================
+    //  STARFIELD + GRID
     // =====================================================
     function initStarfield() {
         state.starfield = [];
@@ -526,8 +561,7 @@
     //  PLAYER
     // =====================================================
     function createPlayer() {
-        const hero = state.hero;
-        return { x: W / 2, y: H - 55, width: 56, height: 36, speed: hero.speed, invincible: 0 };
+        return { x: W / 2, y: H - 55, width: 56, height: 36, speed: state.hero.speed, invincible: 0 };
     }
 
     function drawPlayer() {
@@ -539,11 +573,10 @@
         ctx.save();
         const hx = p.x, hy = p.y;
 
-        // Glow in hero color
         ctx.shadowColor = hero.color;
         ctx.shadowBlur = 22;
 
-        // Ship body - unique tint per hero
+        // Ship hull
         ctx.fillStyle = hero.color;
         ctx.beginPath();
         ctx.moveTo(hx, hy - 22);
@@ -560,7 +593,7 @@
         ctx.closePath();
         ctx.fill();
 
-        // Inner hull darker
+        // Inner hull
         ctx.fillStyle = hero.colorDark;
         ctx.beginPath();
         ctx.moveTo(hx, hy - 16);
@@ -572,7 +605,7 @@
         ctx.closePath();
         ctx.fill();
 
-        // Hero icon in cockpit
+        // Hero icon
         ctx.font = '14px serif';
         ctx.textAlign = 'center';
         ctx.fillText(hero.icon, hx, hy + 5);
@@ -586,19 +619,14 @@
         ctx.fillStyle = '#fff';
         ctx.fillRect(hx - 2, hy + 14, 4, 2 + flicker);
 
-        // Cannon tip
+        // Cannon
         ctx.fillStyle = '#fff';
         ctx.fillRect(hx - 2, hy - 24, 4, 6);
 
         ctx.shadowBlur = 0;
         ctx.restore();
 
-        // Shield visual (Cash Guardian passive)
-        if (hero.id === 'cashguardian') {
-            drawPassiveShield(p);
-        }
-
-        // Special active indicator
+        // Special active ring
         if (state.specialActive) {
             ctx.save();
             ctx.strokeStyle = hero.color;
@@ -621,29 +649,10 @@
         }
     }
 
-    function drawPassiveShield(p) {
-        ctx.save();
-        ctx.strokeStyle = 'rgba(38,198,218,0.35)';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y - 5, 32, Math.PI * 1.15, Math.PI * 1.85);
-        ctx.stroke();
-        // Small shield bars
-        for (let i = 0; i < 5; i++) {
-            const angle = Math.PI * 1.2 + i * (Math.PI * 0.6 / 4);
-            const sx = p.x + Math.cos(angle) * 34;
-            const sy = p.y - 5 + Math.sin(angle) * 34;
-            ctx.fillStyle = 'rgba(38,198,218,0.5)';
-            ctx.fillRect(sx - 2, sy - 1, 4, 2);
-        }
-        ctx.restore();
-    }
-
     // =====================================================
     //  ENEMIES (EXCEL FILES)
     // =====================================================
-    const ENEMY_W = 120;
-    const ENEMY_H = 72;
+    const ENEMY_W = 120, ENEMY_H = 72;
 
     function createEnemies(level) {
         const cfg = LEVELS[level - 1];
@@ -683,7 +692,6 @@
         ctx.translate(0, Math.sin(e.wobble) * 1.2);
 
         if (e.hitFlash > 0) { ctx.shadowColor = '#fff'; ctx.shadowBlur = 18; e.hitFlash--; }
-
         const hpRatio = e.hp / e.maxHp;
         const damaged = hpRatio < 1;
 
@@ -703,14 +711,14 @@
         ctx.fillStyle = tg;
         ctx.fillRect(ex, ey, ew, titleH);
 
-        // Excel X logo
+        // Excel logo
         ctx.fillStyle = damaged ? '#aa3333' : '#185a35';
         ctx.fillRect(ex + 3, ey + 2.5, 11, 11);
         ctx.fillStyle = '#fff';
         ctx.font = 'bold 9px Arial';
         ctx.fillText('X', ex + 5.5, ey + 12);
 
-        // Filename
+        // Filename (big, readable)
         ctx.fillStyle = '#fff';
         ctx.font = 'bold 10px Courier New';
         ctx.textAlign = 'center';
@@ -734,13 +742,13 @@
         const formulaY = ribbonY + ribbonH, formulaH = 9;
         ctx.fillStyle = damaged ? '#1a0d0d' : '#141c28';
         ctx.fillRect(ex, formulaY, ew, formulaH);
-        ctx.fillStyle = damaged ? '#664444' : '#4a6a5a';
         ctx.font = '7px Courier New';
+        ctx.fillStyle = damaged ? '#664444' : '#4a6a5a';
         ctx.fillText('fx', ex + 3, formulaY + 7);
         ctx.fillStyle = damaged ? '#886666' : '#6a8a7a';
         ctx.fillText('=SUM(B2:B14)', ex + 16, formulaY + 7);
 
-        // Grid
+        // Grid area
         const gridY = formulaY + formulaH;
         const gridH = eh - (gridY - ey);
         ctx.fillStyle = damaged ? '#1a0e0e' : '#0f1520';
@@ -752,9 +760,7 @@
         ctx.fillStyle = damaged ? '#886666' : '#6688aa';
         ctx.font = 'bold 7px Arial';
         const colW = (ew - 28) / 3;
-        ctx.fillText('A', ex + 32, gridY + 7);
-        ctx.fillText('B', ex + 32 + colW, gridY + 7);
-        ctx.fillText('C', ex + 32 + colW * 2, gridY + 7);
+        ['A','B','C'].forEach((c, i) => ctx.fillText(c, ex + 32 + i * colW, gridY + 7));
 
         ctx.fillStyle = damaged ? '#2a1818' : '#1a2535';
         ctx.fillRect(ex, gridY + colHeaderH, 14, gridH - colHeaderH);
@@ -781,7 +787,6 @@
             ctx.beginPath(); ctx.moveTo(ex + 14, ry); ctx.lineTo(ex + ew, ry); ctx.stroke();
         });
 
-        // Vertical grid lines
         ctx.strokeStyle = damaged ? 'rgba(100,50,50,0.2)' : 'rgba(50,80,120,0.2)';
         ctx.beginPath(); ctx.moveTo(ex + 14, gridY + colHeaderH); ctx.lineTo(ex + 14, ey + eh); ctx.stroke();
         for (let ci = 1; ci <= 3; ci++) {
@@ -801,14 +806,13 @@
 
         // HP bar
         if (e.maxHp > 1) {
-            const hpW = ew - 4;
             ctx.fillStyle = 'rgba(0,0,0,0.5)';
-            ctx.fillRect(ex + 2, ey + eh - 4, hpW, 3);
+            ctx.fillRect(ex + 2, ey + eh - 4, ew - 4, 3);
             ctx.fillStyle = hpRatio > 0.5 ? '#27ae60' : hpRatio > 0.25 ? '#f39c12' : '#e74c3c';
-            ctx.fillRect(ex + 2, ey + eh - 4, hpW * hpRatio, 3);
+            ctx.fillRect(ex + 2, ey + eh - 4, (ew - 4) * hpRatio, 3);
         }
 
-        // Damage cracks
+        // Cracks
         if (damaged) {
             ctx.strokeStyle = 'rgba(255,100,100,0.4)';
             ctx.lineWidth = 1;
@@ -829,28 +833,31 @@
     function drawBullet(b) {
         ctx.save();
         const hero = state.hero;
-
-        // Trail
-        ctx.fillStyle = `rgba(${hexToRgb(hero.color)},0.15)`;
+        const rgb = hexToRgb(hero.color);
+        ctx.fillStyle = `rgba(${rgb},0.15)`;
         ctx.fillRect(b.x - 1.5, b.y, 3, 18);
-
         ctx.shadowColor = hero.color;
         ctx.shadowBlur = 12;
 
         if (b.pierce) {
-            // Piercing beam - tall thin line
-            ctx.fillStyle = '#ffd700';
-            ctx.fillRect(b.x - 1.5, b.y - 10, 3, 20);
+            ctx.fillStyle = hero.color;
+            ctx.fillRect(b.x - 2, b.y - 12, 4, 24);
             ctx.fillStyle = '#fff';
-            ctx.fillRect(b.x - 0.5, b.y - 8, 1, 16);
+            ctx.fillRect(b.x - 0.5, b.y - 10, 1, 20);
         } else if (b.homing) {
-            // Homing - small glowing orb
-            ctx.fillStyle = '#9c27b0';
+            ctx.fillStyle = hero.color;
             ctx.beginPath(); ctx.arc(b.x, b.y, 4, 0, Math.PI * 2); ctx.fill();
             ctx.fillStyle = '#fff';
             ctx.beginPath(); ctx.arc(b.x, b.y, 1.5, 0, Math.PI * 2); ctx.fill();
+        } else if (b.explosive) {
+            ctx.fillStyle = hero.color;
+            ctx.beginPath(); ctx.arc(b.x, b.y, 5, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 8px Courier New';
+            ctx.textAlign = 'center';
+            ctx.fillText('\u{1F4CA}', b.x, b.y + 3);
+            ctx.textAlign = 'left';
         } else {
-            // Standard formula bullet
             ctx.fillStyle = '#fff';
             ctx.fillRect(b.x - 2, b.y - 4, 4, 8);
             ctx.fillStyle = hero.color;
@@ -877,7 +884,7 @@
     }
 
     // =====================================================
-    //  SHOOTING (hero-specific)
+    //  SHOOTING
     // =====================================================
     function shoot() {
         const now = Date.now();
@@ -885,55 +892,53 @@
         let cooldown = hero.shotCooldown;
 
         if (state.powerupActive?.type === 'vlookup') cooldown = Math.min(cooldown, 100);
-        if (state.specialActive && hero.id === 'autopilot') cooldown = 70;
+        if (state.powerupActive?.type === 'coffee') cooldown = Math.floor(cooldown * 0.6);
+        if (state.specialActive && hero.id === 'vlookuperine') cooldown = 60;
 
         if (now - state.lastShotTime < cooldown) return;
         state.lastShotTime = now;
 
         const p = state.player;
-        const baseSpeed = 9;
+        const spd = 9;
 
-        // Powerup triple shot overrides
+        // Pivot table powerup override
         if (state.powerupActive?.type === 'pivot') {
-            state.bullets.push({ x: p.x, y: p.y - 22, speed: baseSpeed, vx: 0 });
-            state.bullets.push({ x: p.x - 15, y: p.y - 16, speed: baseSpeed, vx: -0.5 });
-            state.bullets.push({ x: p.x + 15, y: p.y - 16, speed: baseSpeed, vx: 0.5 });
+            state.bullets.push({ x: p.x, y: p.y - 22, speed: spd, vx: 0 });
+            state.bullets.push({ x: p.x - 15, y: p.y - 16, speed: spd, vx: -0.5 });
+            state.bullets.push({ x: p.x + 15, y: p.y - 16, speed: spd, vx: 0.5 });
             return;
         }
 
         switch (hero.shotType) {
             case 'spread':
-                // 5-way spread
                 for (let i = -2; i <= 2; i++) {
-                    state.bullets.push({ x: p.x + i * 10, y: p.y - 18, speed: baseSpeed, vx: i * 0.8 });
+                    state.bullets.push({ x: p.x + i * 10, y: p.y - 18, speed: spd, vx: i * 0.8 });
                 }
                 break;
             case 'pierce':
                 state.bullets.push({ x: p.x, y: p.y - 22, speed: 7, vx: 0, pierce: true });
                 break;
             case 'rapid':
-                state.bullets.push({ x: p.x + (Math.random()-0.5)*6, y: p.y - 22, speed: baseSpeed + 2, vx: 0 });
+                state.bullets.push({ x: p.x + (Math.random()-0.5)*6, y: p.y - 22, speed: spd + 2, vx: 0 });
                 break;
             case 'homing': {
                 const alive = state.enemies.filter(e => e.alive);
-                let target = null;
-                if (alive.length > 0) {
-                    target = alive.reduce((a, b) => {
-                        const da = Math.hypot(a.x - p.x, a.y - p.y);
-                        const db = Math.hypot(b.x - p.x, b.y - p.y);
-                        return da < db ? a : b;
-                    });
-                }
+                let target = alive.length > 0 ? alive.reduce((a, b) =>
+                    Math.hypot(a.x - p.x, a.y - p.y) < Math.hypot(b.x - p.x, b.y - p.y) ? a : b
+                ) : null;
                 state.bullets.push({ x: p.x, y: p.y - 22, speed: 6, vx: 0, homing: true, target });
                 break;
             }
+            case 'explosive':
+                state.bullets.push({ x: p.x, y: p.y - 22, speed: 8, vx: 0, explosive: true });
+                break;
             default:
-                state.bullets.push({ x: p.x, y: p.y - 22, speed: baseSpeed, vx: 0 });
+                state.bullets.push({ x: p.x, y: p.y - 22, speed: spd, vx: 0 });
         }
     }
 
     // =====================================================
-    //  SPECIALS (E key)
+    //  SPECIALS
     // =====================================================
     function activateSpecial() {
         if (state.specialCooldownTimer > 0) return;
@@ -941,67 +946,75 @@
         state.specialCooldownTimer = hero.specialCooldown;
 
         switch (hero.id) {
-            case 'consolidator':
-                // Damage all on-screen enemies
-                state.enemies.forEach(e => {
-                    if (!e.alive) return;
-                    e.hp--;
-                    e.hitFlash = 8;
-                    spawnExplosion(e.x, e.y, '#4fc3f7', 6);
-                    if (e.hp <= 0) { killEnemy(e); }
-                });
-                addFloatingText(W / 2, H / 2, 'MEGA CONSOLIDATION!', '#4fc3f7');
-                state.shakeTimer = 15;
-                break;
-            case 'singlesource':
-                // Giant vertical beam at player X
-                for (let y = 0; y < H; y += 5) {
+            case 'captain_version':
+                // Giant vertical beam
+                for (let y = 0; y < H; y += 4) {
                     state.particles.push({
-                        x: state.player.x + (Math.random()-0.5)*20, y,
-                        vx: 0, vy: -2,
-                        life: 30, maxLife: 30,
-                        color: '#ffd700', size: 3,
+                        x: state.player.x + (Math.random()-0.5)*30, y,
+                        vx: 0, vy: -3, life: 35, maxLife: 35, color: '#4fc3f7', size: 3,
                     });
                 }
                 state.enemies.forEach(e => {
                     if (!e.alive) return;
-                    if (Math.abs(e.x - state.player.x) < 60) {
-                        e.hp -= 3;
-                        e.hitFlash = 10;
+                    if (Math.abs(e.x - state.player.x) < 70) {
+                        e.hp -= 4; e.hitFlash = 10;
                         if (e.hp <= 0) killEnemy(e);
                     }
                 });
-                addFloatingText(W / 2, H / 2, 'TRUTH LASER!', '#ffd700');
-                state.shakeTimer = 12;
+                addFloatingText(W / 2, H / 2, 'ONE TRUE FILE!', '#4fc3f7');
+                state.shakeTimer = 15;
                 break;
-            case 'autopilot':
-                state.specialActive = true;
-                state.specialTimer = 5000;
-                addFloatingText(W / 2, H / 2, 'FULL AUTOMATION!', '#ff69b4');
-                break;
-            case 'genius':
-                // Damage all + reveal
+
+            case 'the_bulk':
                 state.enemies.forEach(e => {
                     if (!e.alive) return;
-                    e.hp -= 1;
-                    e.hitFlash = 8;
-                    spawnExplosion(e.x, e.y, '#9c27b0', 4);
+                    e.hp--; e.hitFlash = 8;
+                    spawnExplosion(e.x, e.y, '#66bb6a', 6);
                     if (e.hp <= 0) killEnemy(e);
                 });
-                addFloatingText(W / 2, H / 2, 'AI ANALYSIS!', '#9c27b0');
-                state.shakeTimer = 10;
+                addFloatingText(W / 2, H / 2, 'MEGA MERGE!', '#66bb6a');
+                state.shakeTimer = 15;
                 break;
-            case 'closer':
+
+            case 'iron_closer':
                 state.freezeTimer = 4000;
                 state.specialActive = true;
                 state.specialTimer = 4000;
-                addFloatingText(W / 2, H / 2, 'TIME FREEZE!', '#00e676');
+                addFloatingText(W / 2, H / 2, 'HARD CLOSE!', '#ef5350');
+                // Freeze visual
+                state.enemies.filter(e => e.alive).forEach(e => {
+                    spawnExplosion(e.x, e.y, '#81d4fa', 3);
+                });
                 break;
-            case 'cashguardian':
-                state.player.invincible = 300; // ~5 sec
+
+            case 'forecast_man':
+                state.enemies.forEach(e => {
+                    if (!e.alive) return;
+                    e.hp--; e.hitFlash = 8;
+                    spawnExplosion(e.x, e.y, '#ab47bc', 4);
+                    if (e.hp <= 0) killEnemy(e);
+                });
+                addFloatingText(W / 2, H / 2, 'I FORESAW THIS!', '#ab47bc');
+                state.shakeTimer = 10;
+                break;
+
+            case 'vlookuperine':
                 state.specialActive = true;
                 state.specialTimer = 5000;
-                addFloatingText(W / 2, H / 2, 'CASH FORTRESS!', '#26c6da');
+                addFloatingText(W / 2, H / 2, 'BERSERKER MODE!', '#ffa726');
+                break;
+
+            case 'black_dashboard':
+                // Carpet bomb - explosions everywhere
+                const alive = state.enemies.filter(e => e.alive);
+                alive.forEach(e => {
+                    e.hp -= 2; e.hitFlash = 10;
+                    spawnExplosion(e.x, e.y, '#ffd740', 10);
+                    spawnCellExplosion(e.x, e.y);
+                    if (e.hp <= 0) killEnemy(e);
+                });
+                addFloatingText(W / 2, H / 2, 'BOARD REPORT!', '#ffd740');
+                state.shakeTimer = 20;
                 break;
         }
     }
@@ -1018,6 +1031,10 @@
         spawnCellExplosion(e.x, e.y);
         addFloatingText(e.x, e.y - 20, `+${points}`, COLORS.gold);
         if (comboMult > 1) addFloatingText(e.x, e.y - 40, `${comboMult}x COMBO!`, '#ff69b4');
+        // Random quip
+        if (Math.random() < 0.15) {
+            addFloatingText(e.x, e.y - 55, KILL_QUIPS[Math.floor(Math.random() * KILL_QUIPS.length)], '#aaa');
+        }
         spawnPowerup(e.x, e.y);
     }
 
@@ -1029,7 +1046,7 @@
         const cfg = LEVELS[state.level - 1];
         state.enemies.filter(e => e.alive).forEach(e => {
             if (Math.random() < cfg.shootChance) {
-                const texts = ['#REF!','#N/A','#ERR','#DIV/0!','####','#VALUE!'];
+                const texts = ['#REF!','#N/A','#ERR','#DIV/0!','####','#VALUE!','CIRCULAR','#NAME?'];
                 state.enemyBullets.push({
                     x: e.x, y: e.y + e.height / 2,
                     speed: 3 + state.level * 0.3,
@@ -1052,13 +1069,9 @@
         ctx.save();
         p.age++;
         ctx.globalAlpha = Math.sin(p.age * 0.1) * 0.3 + 0.7;
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = 16;
+        ctx.shadowColor = p.color; ctx.shadowBlur = 16;
         ctx.fillStyle = p.color;
-        const rx = p.x - p.width / 2, ry = p.y - p.height / 2;
-        ctx.beginPath();
-        ctx.roundRect(rx, ry, p.width, p.height, 4);
-        ctx.fill();
+        ctx.beginPath(); ctx.roundRect(p.x - p.width/2, p.y - p.height/2, p.width, p.height, 4); ctx.fill();
         ctx.fillStyle = '#000';
         ctx.font = 'bold 9px Courier New';
         ctx.textAlign = 'center';
@@ -1070,38 +1083,28 @@
 
     function spawnExplosion(x, y, color, count) {
         for (let i = 0; i < count; i++) {
-            const a = Math.random() * Math.PI * 2;
-            const sp = Math.random() * 3.5 + 1;
-            state.particles.push({
-                x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
-                life: 35 + Math.random() * 20, maxLife: 55, color, size: Math.random() * 4 + 1,
-            });
+            const a = Math.random() * Math.PI * 2, sp = Math.random() * 3.5 + 1;
+            state.particles.push({ x, y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp,
+                life: 35 + Math.random()*20, maxLife: 55, color, size: Math.random()*4+1 });
         }
     }
 
     function spawnCellExplosion(x, y) {
-        const texts = ['#REF!','#N/A','#VALUE!','####','#DIV/0!','$0.00','=SUM(','VLOOKUP(','ERR:508','Circular!'];
+        const texts = ['#REF!','#N/A','#VALUE!','####','#DIV/0!','$0.00','=SUM(','VLOOKUP(','ERR:508','Circular!','#NAME?'];
         for (let i = 0; i < 8; i++) {
-            const a = Math.random() * Math.PI * 2;
-            const sp = Math.random() * 2.5 + 0.5;
-            state.particles.push({
-                x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1.5,
-                life: 50 + Math.random() * 25, maxLife: 75,
+            const a = Math.random()*Math.PI*2, sp = Math.random()*2.5+0.5;
+            state.particles.push({ x, y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp-1.5,
+                life: 50+Math.random()*25, maxLife: 75,
                 color: ['#ff6b6b','#ff9944','#ffcc00','#ff69b4'][Math.floor(Math.random()*4)],
-                size: 0, text: texts[Math.floor(Math.random() * texts.length)], isText: true,
-            });
+                size: 0, text: texts[Math.floor(Math.random()*texts.length)], isText: true });
         }
         for (let i = 0; i < 6; i++) {
-            const a = Math.random() * Math.PI * 2;
-            const sp = Math.random() * 3 + 1;
-            state.particles.push({
-                x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1,
-                life: 25 + Math.random() * 15, maxLife: 40,
+            const a = Math.random()*Math.PI*2, sp = Math.random()*3+1;
+            state.particles.push({ x, y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp-1,
+                life: 25+Math.random()*15, maxLife: 40,
                 color: ['#217346','#1a5c38','#2a9158','#4fc3f7'][Math.floor(Math.random()*4)],
-                size: 0, isCell: true,
-                cellW: Math.random() * 16 + 6, cellH: Math.random() * 8 + 3,
-                rotation: Math.random() * Math.PI * 2, rotSpeed: (Math.random()-0.5) * 0.2,
-            });
+                size: 0, isCell: true, cellW: Math.random()*16+6, cellH: Math.random()*8+3,
+                rotation: Math.random()*Math.PI*2, rotSpeed: (Math.random()-0.5)*0.2 });
         }
     }
 
@@ -1110,37 +1113,23 @@
             p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
             const alpha = p.life / p.maxLife;
             if (p.isText) {
-                ctx.globalAlpha = alpha;
-                ctx.fillStyle = p.color;
-                ctx.font = 'bold 9px Courier New';
-                ctx.fillText(p.text, p.x, p.y);
-                ctx.globalAlpha = 1;
+                ctx.globalAlpha = alpha; ctx.fillStyle = p.color;
+                ctx.font = 'bold 9px Courier New'; ctx.fillText(p.text, p.x, p.y); ctx.globalAlpha = 1;
             } else if (p.isCell) {
-                ctx.save();
-                ctx.translate(p.x, p.y);
-                p.rotation += p.rotSpeed;
-                ctx.rotate(p.rotation);
-                ctx.globalAlpha = alpha;
-                ctx.fillStyle = p.color;
+                ctx.save(); ctx.translate(p.x, p.y); p.rotation += p.rotSpeed; ctx.rotate(p.rotation);
+                ctx.globalAlpha = alpha; ctx.fillStyle = p.color;
                 ctx.fillRect(-p.cellW/2, -p.cellH/2, p.cellW, p.cellH);
-                ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-                ctx.lineWidth = 0.5;
+                ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 0.5;
                 ctx.strokeRect(-p.cellW/2, -p.cellH/2, p.cellW, p.cellH);
-                ctx.globalAlpha = 1;
-                ctx.restore();
+                ctx.globalAlpha = 1; ctx.restore();
             } else {
-                ctx.globalAlpha = alpha;
-                ctx.fillStyle = p.color;
-                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
-                ctx.globalAlpha = 1;
+                ctx.globalAlpha = alpha; ctx.fillStyle = p.color;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill(); ctx.globalAlpha = 1;
             }
         });
         state.particles = state.particles.filter(p => p.life > 0);
     }
 
-    // =====================================================
-    //  FLOATING TEXT
-    // =====================================================
     function addFloatingText(x, y, text, color) {
         state.floatingTexts.push({ x, y, text, color, life: 50 });
     }
@@ -1150,13 +1139,10 @@
             ft.y -= 1.1; ft.life--;
             const alpha = ft.life / 50;
             const scale = 1 + (1 - alpha) * 0.3;
-            ctx.globalAlpha = alpha;
-            ctx.fillStyle = ft.color;
-            ctx.font = `bold ${Math.round(13 * scale)}px Courier New`;
-            ctx.textAlign = 'center';
-            ctx.fillText(ft.text, ft.x, ft.y);
-            ctx.textAlign = 'left';
-            ctx.globalAlpha = 1;
+            ctx.globalAlpha = alpha; ctx.fillStyle = ft.color;
+            ctx.font = `bold ${Math.round(13*scale)}px Courier New`;
+            ctx.textAlign = 'center'; ctx.fillText(ft.text, ft.x, ft.y);
+            ctx.textAlign = 'left'; ctx.globalAlpha = 1;
         });
         state.floatingTexts = state.floatingTexts.filter(ft => ft.life > 0);
     }
@@ -1168,12 +1154,8 @@
     document.addEventListener('keydown', e => {
         keys[e.key] = true;
         if ([' ','ArrowUp','ArrowDown'].includes(e.key)) e.preventDefault();
-        if (e.key === 'p' || e.key === 'P') {
-            if (state.running && !state.gameOver) state.paused = !state.paused;
-        }
-        if ((e.key === 'e' || e.key === 'E') && state.running && !state.paused) {
-            activateSpecial();
-        }
+        if (e.key === 'p' || e.key === 'P') { if (state.running && !state.gameOver) state.paused = !state.paused; }
+        if ((e.key === 'e' || e.key === 'E') && state.running && !state.paused) activateSpecial();
     });
     document.addEventListener('keyup', e => { keys[e.key] = false; });
 
@@ -1181,7 +1163,7 @@
     //  COLLISION
     // =====================================================
     function checkCollision(ax, ay, bx, by, bw, bh) {
-        return ax > bx - bw / 2 && ax < bx + bw / 2 && ay > by - bh / 2 && ay < by + bh / 2;
+        return ax > bx - bw/2 && ax < bx + bw/2 && ay > by - bh/2 && ay < by + bh/2;
     }
 
     // =====================================================
@@ -1189,15 +1171,12 @@
     // =====================================================
     function update() {
         if (state.paused || state.gameOver) return;
-
         const p = state.player;
         const hero = state.hero;
 
-        // Movement
         if ((keys['ArrowLeft'] || keys['a'] || keys['A']) && p.x > 30) p.x -= p.speed;
         if ((keys['ArrowRight'] || keys['d'] || keys['D']) && p.x < W - 30) p.x += p.speed;
         if (keys[' ']) shoot();
-
         if (p.invincible > 0) p.invincible--;
 
         // Powerup timer
@@ -1205,30 +1184,30 @@
             state.powerupTimer -= 16;
             if (state.powerupTimer <= 0) state.powerupActive = null;
         }
-
-        // Special cooldown
-        if (state.specialCooldownTimer > 0) state.specialCooldownTimer -= 16;
-        if (state.specialActive) {
-            state.specialTimer -= 16;
-            if (state.specialTimer <= 0) { state.specialActive = false; }
+        // Coffee speed boost
+        if (state.powerupActive?.type === 'coffee') {
+            p.speed = hero.speed * 1.5;
+        } else {
+            p.speed = hero.speed;
         }
-        if (state.freezeTimer > 0) state.freezeTimer -= 16;
 
-        // Combo timer
+        if (state.specialCooldownTimer > 0) state.specialCooldownTimer -= 16;
+        if (state.specialActive) { state.specialTimer -= 16; if (state.specialTimer <= 0) state.specialActive = false; }
+        if (state.freezeTimer > 0) state.freezeTimer -= 16;
         if (state.comboTimer > 0) { state.comboTimer -= 16; if (state.comboTimer <= 0) state.comboCount = 0; }
 
-        // AutoPilot special: auto-aim + auto-shoot
-        if (state.specialActive && hero.id === 'autopilot') {
+        // VLOOKUP-erine berserker: auto-aim + auto-fire
+        if (state.specialActive && hero.id === 'vlookuperine') {
             const alive = state.enemies.filter(e => e.alive);
             if (alive.length > 0) {
                 const closest = alive.reduce((a, b) => Math.abs(a.x - p.x) < Math.abs(b.x - p.x) ? a : b);
-                if (closest.x < p.x - 3) p.x -= p.speed * 0.8;
-                if (closest.x > p.x + 3) p.x += p.speed * 0.8;
+                if (closest.x < p.x - 3) p.x -= p.speed * 0.85;
+                if (closest.x > p.x + 3) p.x += p.speed * 0.85;
                 shoot();
             }
         }
 
-        // VBA Macro powerup: auto-aim
+        // VBA Macro powerup
         if (state.powerupActive?.type === 'macro') {
             const alive = state.enemies.filter(e => e.alive);
             if (alive.length > 0) {
@@ -1243,22 +1222,18 @@
         state.bullets.forEach(b => {
             b.y -= b.speed;
             if (b.vx) b.x += b.vx;
-            // Homing
             if (b.homing && b.target && b.target.alive) {
-                const dx = b.target.x - b.x;
-                const dy = b.target.y - b.y;
+                const dx = b.target.x - b.x, dy = b.target.y - b.y;
                 const angle = Math.atan2(dy, dx);
-                b.x += Math.cos(angle) * 2;
-                b.y += Math.sin(angle) * 2;
+                b.x += Math.cos(angle) * 2.5;
+                b.y += Math.sin(angle) * 2.5;
             }
         });
         state.bullets = state.bullets.filter(b => b.y > -10 && b.x > -20 && b.x < W + 20);
 
-        // Update enemy bullets
         state.enemyBullets.forEach(b => b.y += b.speed);
         state.enemyBullets = state.enemyBullets.filter(b => b.y < H + 10);
 
-        // Update powerups
         state.powerups.forEach(pw => pw.y += pw.speed);
         state.powerups = state.powerups.filter(pw => pw.y < H + 20);
 
@@ -1269,9 +1244,20 @@
                 if (!e.alive) return;
                 if (bulletsToRemove.has(bi) && !b.pierce) return;
                 if (checkCollision(b.x, b.y, e.x, e.y, e.width, e.height)) {
-                    e.hp--;
-                    e.hitFlash = 6;
+                    e.hp--; e.hitFlash = 6;
                     if (!b.pierce) bulletsToRemove.add(bi);
+
+                    // Explosive: splash damage to nearby
+                    if (b.explosive) {
+                        spawnExplosion(e.x, e.y, '#ffd740', 12);
+                        state.enemies.forEach(other => {
+                            if (!other.alive || other === e) return;
+                            if (Math.hypot(other.x - e.x, other.y - e.y) < 80) {
+                                other.hp--; other.hitFlash = 4;
+                                if (other.hp <= 0) killEnemy(other);
+                            }
+                        });
+                    }
 
                     if (e.hp <= 0) {
                         killEnemy(e);
@@ -1286,17 +1272,10 @@
 
         // Enemy bullet - player collision
         if (p.invincible <= 0) {
-            // Cash Guardian passive: small chance to block
-            const blockChance = hero.id === 'cashguardian' ? 0.25 : 0;
             state.enemyBullets.forEach((b, bi) => {
                 if (checkCollision(b.x, b.y, p.x, p.y, 44, 34)) {
                     state.enemyBullets.splice(bi, 1);
-                    if (Math.random() < blockChance) {
-                        addFloatingText(p.x, p.y - 30, 'BLOCKED!', '#26c6da');
-                        spawnExplosion(p.x, p.y - 15, '#26c6da', 6);
-                    } else {
-                        playerHit();
-                    }
+                    playerHit();
                 }
             });
         }
@@ -1308,6 +1287,10 @@
                 if (pw.type === 'ctrl_z') {
                     state.lives++;
                     addFloatingText(p.x, p.y - 35, 'CTRL+Z! +1 LIFE', '#4caf50');
+                } else if (pw.type === 'coffee') {
+                    state.powerupActive = pw;
+                    state.powerupTimer = pw.duration;
+                    addFloatingText(p.x, p.y - 35, 'CAFFEINE BOOST!', '#8d6e63');
                 } else {
                     state.powerupActive = pw;
                     state.powerupTimer = pw.duration;
@@ -1358,19 +1341,24 @@
         state.shakeTimer = 12;
         state.powerupActive = null;
         spawnExplosion(state.player.x, state.player.y, COLORS.danger, 18);
-        addFloatingText(state.player.x, state.player.y - 35, '#REF! ERROR', COLORS.danger);
+        const hitQuips = [
+            '#REF! ERROR', 'FORMULA BROKEN!', 'DATA CORRUPTED!',
+            'MERGE CONFLICT!', 'CIRCULAR REFERENCE!', 'SOMEBODY EDITED YOUR CELL!',
+        ];
+        addFloatingText(state.player.x, state.player.y - 35,
+            hitQuips[Math.floor(Math.random() * hitQuips.length)], COLORS.danger);
         if (state.lives <= 0) gameOver();
     }
 
     function gameOver() {
-        state.gameOver = true;
-        state.running = false;
+        state.gameOver = true; state.running = false;
         document.getElementById('final-score').textContent = state.score;
-        const msgs = [
-            'The shared drive wins again...', 'Maybe try naming conventions next time?',
-            'Have you considered Datarails?', 'The CFO sent a "per my last email"...',
-        ];
-        document.getElementById('game-over-message').textContent = msgs[Math.floor(Math.random() * msgs.length)];
+        document.getElementById('gameover-title').textContent =
+            GAMEOVER_TITLES[Math.floor(Math.random() * GAMEOVER_TITLES.length)];
+        document.getElementById('gameover-sub').textContent =
+            GAMEOVER_SUBS[Math.floor(Math.random() * GAMEOVER_SUBS.length)];
+        document.getElementById('game-over-message').textContent =
+            GAMEOVER_MESSAGES[Math.floor(Math.random() * GAMEOVER_MESSAGES.length)];
         document.getElementById('game-over-screen').classList.remove('hidden');
     }
 
@@ -1380,27 +1368,23 @@
         state.powerupActive = null;
         state.bullets = []; state.enemyBullets = []; state.powerups = [];
         state.enemies = createEnemies(state.level);
-        state.enemyDir = 1;
-        state.freezeTimer = 0;
-        state.specialActive = false;
+        state.enemyDir = 1; state.freezeTimer = 0; state.specialActive = false;
 
         const banner = document.getElementById('level-banner');
-        banner.textContent = `LEVEL ${state.level}: ${LEVELS[state.level - 1].name}`;
+        const quip = LEVEL_QUIPS[state.level - 1] || '';
+        banner.innerHTML = `LEVEL ${state.level}: ${LEVELS[state.level - 1].name}` +
+            (quip ? `<br><span style="font-size:14px;color:#aaa">${quip}</span>` : '');
         banner.classList.add('show');
-        setTimeout(() => banner.classList.remove('show'), 2000);
+        setTimeout(() => banner.classList.remove('show'), 2500);
     }
 
     function winGame() {
-        state.won = true;
-        state.running = false;
+        state.won = true; state.running = false;
         document.getElementById('win-score').textContent = state.score;
-        const msgs = [
-            'One version to rule them all.',
-            'The CFO sheds a single tear of joy.',
-            'FP&A will write legends about you.',
-            'You\'ve achieved the impossible: version control.',
-        ];
-        document.getElementById('win-message').textContent = msgs[Math.floor(Math.random() * msgs.length)];
+        document.getElementById('win-sub').textContent =
+            WIN_SUBS[Math.floor(Math.random() * WIN_SUBS.length)];
+        document.getElementById('win-message').textContent =
+            WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)];
         document.getElementById('win-screen').classList.remove('hidden');
     }
 
@@ -1414,9 +1398,8 @@
         ctx.fillStyle = '#0a0a16';
         ctx.fillRect(-5, -5, W + 10, H + 10);
 
-        // Freeze tint
         if (state.freezeTimer > 0) {
-            ctx.fillStyle = 'rgba(0,230,118,0.03)';
+            ctx.fillStyle = 'rgba(100,200,255,0.04)';
             ctx.fillRect(0, 0, W, H);
         }
 
@@ -1446,20 +1429,18 @@
             const barW = 140;
             const pct = state.powerupTimer / state.powerupActive.duration;
             ctx.fillStyle = 'rgba(0,0,0,0.6)';
-            ctx.fillRect(W / 2 - barW / 2 - 2, H - 25, barW + 4, 14);
+            ctx.fillRect(W/2 - barW/2 - 2, H - 25, barW + 4, 14);
             ctx.fillStyle = state.powerupActive.color;
-            ctx.fillRect(W / 2 - barW / 2, H - 23, barW * pct, 10);
-            ctx.fillStyle = '#fff';
-            ctx.font = '8px Courier New';
-            ctx.textAlign = 'center';
+            ctx.fillRect(W/2 - barW/2, H - 23, barW * pct, 10);
+            ctx.fillStyle = '#fff'; ctx.font = '8px Courier New'; ctx.textAlign = 'center';
             ctx.fillText(state.powerupActive.label, W / 2, H - 15);
             ctx.textAlign = 'left';
         }
 
-        // Special cooldown bar (bottom left)
+        // Special cooldown (bottom left)
         const hero = state.hero;
         const cdPct = 1 - Math.max(0, state.specialCooldownTimer) / hero.specialCooldown;
-        const barX = 15, barY = H - 30, barW = 110, barH = 16;
+        const barX = 15, barY = H - 30, barW = 120, barH = 16;
         ctx.fillStyle = 'rgba(0,0,0,0.6)';
         ctx.fillRect(barX - 1, barY - 1, barW + 2, barH + 2);
         ctx.fillStyle = cdPct >= 1 ? hero.color : '#444';
@@ -1470,34 +1451,26 @@
         ctx.fillStyle = cdPct >= 1 ? '#fff' : '#888';
         ctx.font = 'bold 9px Courier New';
         ctx.textAlign = 'center';
-        ctx.fillText(cdPct >= 1 ? `[E] ${hero.specialName}` : hero.specialName, barX + barW / 2, barY + 11);
+        ctx.fillText(cdPct >= 1 ? `[E] ${hero.specialName}` : hero.specialName, barX + barW/2, barY + 11);
         ctx.textAlign = 'left';
 
         // Pause
         if (state.paused) {
             ctx.fillStyle = 'rgba(0,0,0,0.65)';
             ctx.fillRect(0, 0, W, H);
-            ctx.fillStyle = '#fff';
-            ctx.font = 'bold 34px Courier New';
-            ctx.textAlign = 'center';
-            ctx.fillText('PAUSED', W / 2, H / 2 - 10);
-            ctx.font = '15px Courier New';
-            ctx.fillStyle = '#aaa';
-            ctx.fillText('Press P to resume', W / 2, H / 2 + 22);
+            ctx.fillStyle = '#fff'; ctx.font = 'bold 34px Courier New';
+            ctx.textAlign = 'center'; ctx.fillText('PAUSED', W/2, H/2 - 20);
+            ctx.font = '14px Courier New'; ctx.fillStyle = '#aaa';
+            ctx.fillText('Press P to resume', W/2, H/2 + 10);
+            ctx.fillText('"Even superheroes need bathroom breaks."', W/2, H/2 + 35);
             ctx.textAlign = 'left';
         }
 
         ctx.restore();
     }
 
-    // =====================================================
-    //  UTILS
-    // =====================================================
     function hexToRgb(hex) {
-        const r = parseInt(hex.slice(1, 3), 16);
-        const g = parseInt(hex.slice(3, 5), 16);
-        const b = parseInt(hex.slice(5, 7), 16);
-        return `${r},${g},${b}`;
+        return `${parseInt(hex.slice(1,3),16)},${parseInt(hex.slice(3,5),16)},${parseInt(hex.slice(5,7),16)}`;
     }
 
     // =====================================================
@@ -1505,8 +1478,7 @@
     // =====================================================
     function gameLoop() {
         if (!state.running && !state.gameOver && !state.won) return;
-        update();
-        draw();
+        update(); draw();
         if (state.running) requestAnimationFrame(gameLoop);
     }
 
@@ -1523,8 +1495,7 @@
         state.paused = false; state.running = true; state.gameOver = false; state.won = false;
         state.player = createPlayer();
         state.bullets = []; state.enemyBullets = []; state.particles = []; state.powerups = [];
-        state.enemies = createEnemies(1);
-        state.enemyDir = 1; state.lastShotTime = 0;
+        state.enemies = createEnemies(1); state.enemyDir = 1; state.lastShotTime = 0;
         state.powerupActive = null; state.comboCount = 0; state.comboTimer = 0;
         state.floatingTexts = [];
         state.specialCooldownTimer = 0; state.specialActive = false; state.specialTimer = 0;
@@ -1536,18 +1507,14 @@
         banner.textContent = `LEVEL 1: ${LEVELS[0].name}`;
         banner.classList.add('show');
         setTimeout(() => banner.classList.remove('show'), 2000);
-
         gameLoop();
     }
 
-    // Start screen bg animation
+    // Start screen bg
     initStarfield();
-    let startBgRunning = true;
     function drawStartBgLoop() {
-        ctx.fillStyle = '#0a0a16';
-        ctx.fillRect(0, 0, W, H);
-        drawGrid();
-        drawStarfield();
+        ctx.fillStyle = '#0a0a16'; ctx.fillRect(0, 0, W, H);
+        drawGrid(); drawStarfield();
         if (!state.running) requestAnimationFrame(drawStartBgLoop);
     }
     drawStartBgLoop();
