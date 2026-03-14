@@ -8,9 +8,9 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #0a0a1a;
-            color: #e0e0e0;
-            font-family: 'Courier New', monospace;
+            background: linear-gradient(180deg, #7aa8d9 0%, #5d8fc6 45%, #4a78b1 100%);
+            color: #1b1b1b;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             overflow: hidden;
             height: 100vh;
             display: flex;
@@ -24,27 +24,29 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 24px;
-            background: linear-gradient(180deg, #0f3d0f 0%, #0a0a1a 100%);
-            border-bottom: 2px solid #217346;
+            padding: 9px 16px;
+            background: linear-gradient(180deg, #fefefe 0%, #e7eef7 100%);
+            border: 1px solid #8eaecf;
+            border-bottom: 0;
+            box-shadow: inset 0 1px 0 #ffffff;
         }
 
         #game-header .title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #217346;
-            text-shadow: 0 0 10px #217346;
-            letter-spacing: 2px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2b4f77;
+            text-shadow: 0 1px 0 #fff;
+            letter-spacing: 0.6px;
         }
 
-        #game-header .stats { display: flex; gap: 24px; font-size: 15px; }
-        .stat-label { color: #888; }
-        .stat-value { color: #4fc3f7; font-weight: bold; }
-        #hero-label { color: #ffd700; font-weight: bold; }
+        #game-header .stats { display: flex; gap: 18px; font-size: 13px; }
+        .stat-label { color: #4b6178; }
+        .stat-value { color: #25568f; font-weight: bold; }
+        #hero-label { color: #996800; font-weight: bold; }
 
         #game-canvas {
-            border: 2px solid #217346;
-            box-shadow: 0 0 40px rgba(33, 115, 70, 0.3);
+            border: 1px solid #8eaecf;
+            box-shadow: 0 14px 40px rgba(9, 29, 52, 0.32);
             cursor: none;
         }
 
@@ -55,36 +57,36 @@
             transform: translate(-50%, -50%);
             text-align: center;
             z-index: 10;
-            background: rgba(10, 10, 26, 0.97);
-            padding: 32px 40px;
-            border: 2px solid #217346;
-            border-radius: 12px;
-            box-shadow: 0 0 60px rgba(33, 115, 70, 0.4);
+            background: linear-gradient(180deg, #fdfefe, #edf3fb);
+            padding: 28px 36px;
+            border: 1px solid #8eaecf;
+            border-radius: 8px;
+            box-shadow: 0 16px 50px rgba(11, 37, 66, 0.3);
             max-height: 95vh;
             overflow-y: auto;
         }
 
         #start-screen h1 {
-            font-size: 36px;
-            color: #217346;
-            text-shadow: 0 0 25px #217346;
+            font-size: 34px;
+            color: #1f4d7a;
+            text-shadow: 0 1px 0 #fff;
             margin-bottom: 2px;
             letter-spacing: 3px;
         }
 
         #start-screen h2 {
             font-size: 16px;
-            color: #4fc3f7;
+            color: #305f8c;
             margin-bottom: 4px;
             font-weight: normal;
         }
 
-        .powered-by { font-size: 11px; color: #666; margin-bottom: 14px; }
-        .powered-by span { color: #217346; font-weight: bold; }
+        .powered-by { font-size: 11px; color: #4f6680; margin-bottom: 14px; }
+        .powered-by span { color: #1e5d9d; font-weight: bold; }
 
         #start-screen .lore {
             font-size: 12px;
-            color: #999;
+            color: #4f6680;
             margin-bottom: 18px;
             line-height: 1.7;
             max-width: 560px;
@@ -93,7 +95,7 @@
 
         .hero-select-title {
             font-size: 15px;
-            color: #ffd700;
+            color: #305f8c;
             margin-bottom: 12px;
             letter-spacing: 1px;
         }
@@ -139,21 +141,22 @@
         .hero-card .hero-power strong { color: #ffd700; }
 
         .btn-start {
-            background: linear-gradient(180deg, #217346, #185a35);
-            color: white;
-            border: none;
+            background: linear-gradient(180deg, #fdfefe, #dbe8f7);
+            color: #1f4570;
+            border: 1px solid #89abd0;
+            box-shadow: inset 0 1px 0 #fff;
             padding: 13px 38px;
             font-size: 15px;
-            font-family: 'Courier New', monospace;
+            font-family: 'Segoe UI', 'Courier New', monospace;
             cursor: pointer;
             border-radius: 6px;
             transition: all 0.3s;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .btn-start:hover {
-            background: linear-gradient(180deg, #2a9158, #217346);
-            box-shadow: 0 0 25px rgba(33, 115, 70, 0.6);
+            background: linear-gradient(180deg, #ffffff, #cfe2f5);
+            box-shadow: 0 0 14px rgba(37, 86, 143, 0.25);
         }
 
         .controls-hint { margin-top: 14px; font-size: 11px; color: #555; }
@@ -192,20 +195,20 @@
     <!-- START SCREEN -->
     <div id="start-screen" class="overlay-screen">
         <h1>VERSION INVADERS</h1>
-        <h2>FP&A Superhero Edition</h2>
+        <h2>Windows Explorer Defense Edition</h2>
         <div class="powered-by">Powered by <span>Datarails</span> | Where FP&A Heroes Are Born</div>
         <div class="lore">
             "It's 11 PM on a Tuesday. Month-end close is tomorrow.<br>
-            Someone just emailed <strong style="color:#ff6b6b">Budget_Final_v2_FINAL_REALLY_FINAL_USE_THIS (2).xlsx</strong><br>
-            and it doesn't match the other 47 versions on the shared drive.<br><br>
-            But you... you have <strong style="color:#ffd700">Datarails</strong>.<br>
-            You're not just an analyst. You're a <strong style="color:#4fc3f7">superhero</strong>."
+            The shared drive is chaos and your Windows Explorer folder is full of fake finals.<br>
+            At the top sits <strong style="color:#0f5d9f">Real_Final_Datarails.xlsx</strong> - the one true file.<br>
+            Destroy every other workbook and protect the Datarails file at all costs.<br><br>
+            One wrong shot and the truth is gone."
         </div>
 
         <div class="hero-select-title">CHOOSE YOUR HERO</div>
         <div class="hero-grid" id="hero-grid"></div>
 
-        <button class="btn-start" id="btn-start" onclick="startGame()">SAVE THE SPREADSHEETS</button>
+        <button class="btn-start" id="btn-start" onclick="startGame()">CLEAN THE FOLDER</button>
         <div class="controls-hint">
             <span>[Arrows / A-D]</span> Move &nbsp;|&nbsp; <span>[Space]</span> Fire &nbsp;|&nbsp; <span>[E]</span> Special &nbsp;|&nbsp; <span>[P]</span> Pause
         </div>
@@ -637,32 +640,92 @@
     // =====================================================
     function initStarfield() {
         state.starfield = [];
-        for (let i = 0; i < 100; i++) {
-            state.starfield.push({
-                x: Math.random() * W, y: Math.random() * H,
-                size: Math.random() * 1.8 + 0.3,
-                speed: Math.random() * 0.3 + 0.05,
-                alpha: Math.random() * 0.4 + 0.1,
-            });
+        for (let i = 0; i < 42; i++) {
+            state.starfield.push({ x: Math.random() * W, y: Math.random() * H, alpha: Math.random() * 0.3 + 0.08 });
         }
     }
 
     function drawStarfield() {
-        state.starfield.forEach(s => {
-            ctx.fillStyle = `rgba(80,140,80,${s.alpha})`;
-            ctx.fillRect(s.x, s.y, s.size, s.size);
-            s.y += s.speed;
-            if (s.y > H) { s.y = 0; s.x = Math.random() * W; }
+        // Explorer window frame
+        ctx.fillStyle = '#eaf2fb';
+        ctx.fillRect(0, 0, W, H);
+
+        // Title bar
+        ctx.fillStyle = '#f4f7fb';
+        ctx.fillRect(0, 0, W, 32);
+        ctx.strokeStyle = '#c8d8ea';
+        ctx.beginPath(); ctx.moveTo(0, 32); ctx.lineTo(W, 32); ctx.stroke();
+        ctx.fillStyle = '#2f557d';
+        ctx.font = '12px Segoe UI';
+        ctx.fillText('File Explorer', 12, 21);
+
+        // Address/command bar
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 32, W, 42);
+        ctx.strokeStyle = '#d6e2ef';
+        ctx.beginPath(); ctx.moveTo(0, 74); ctx.lineTo(W, 74); ctx.stroke();
+
+        ctx.fillStyle = '#fdfefe';
+        ctx.strokeStyle = '#b6cbe0';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(122, 41, W - 290, 23, 4);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#5b7692';
+        ctx.font = '11px Segoe UI';
+        ctx.fillText('Quick access  >  Finance  >  Budgeting  >  Final Versions', 132, 56);
+
+        ctx.fillStyle = '#f4f7fb';
+        ctx.fillRect(0, 74, 220, H - 74);
+        ctx.strokeStyle = '#c7d7e8';
+        ctx.beginPath(); ctx.moveTo(220, 74); ctx.lineTo(220, H); ctx.stroke();
+
+        const folders = ['Quick access', 'OneDrive', 'This PC', 'Desktop', 'Documents', 'Downloads', 'Finance', 'Budgets', 'Forecasts', 'Archive'];
+        ctx.font = '11px Segoe UI';
+        folders.forEach((f, i) => {
+            const y = 96 + i * 24;
+            if (f === 'Finance') {
+                ctx.fillStyle = '#dcebfb';
+                ctx.fillRect(10, y - 14, 198, 20);
+            }
+            ctx.fillStyle = '#355779';
+            ctx.fillText(f, 24, y);
+            ctx.fillStyle = '#f2cc66';
+            ctx.fillRect(13, y - 10, 8, 7);
+            ctx.fillStyle = '#e4b644';
+            ctx.fillRect(13, y - 12, 5, 3);
         });
+
+        // right pane base
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(221, 74, W - 221, H - 74);
     }
 
     function drawGrid() {
-        ctx.strokeStyle = COLORS.gridLine;
-        ctx.lineWidth = 0.3;
-        ctx.globalAlpha = 0.1;
-        for (let x = 0; x < W; x += 70) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
-        for (let y = 0; y < H; y += 22) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
-        ctx.globalAlpha = 1;
+        // Details header row
+        ctx.fillStyle = '#f6f9fd';
+        ctx.fillRect(221, 74, W - 231, 28);
+        ctx.strokeStyle = '#cfdeed';
+        ctx.beginPath(); ctx.moveTo(221, 102); ctx.lineTo(W - 10, 102); ctx.stroke();
+
+        ctx.fillStyle = '#526f8d';
+        ctx.font = '11px Segoe UI';
+        ctx.fillText('Name', 242, 92);
+        ctx.fillText('Date modified', 560, 92);
+        ctx.fillText('Type', 765, 92);
+        ctx.fillText('Size', 915, 92);
+
+        // vertical separators
+        ctx.strokeStyle = 'rgba(184,203,223,0.7)';
+        [540, 745, 900].forEach(x => { ctx.beginPath(); ctx.moveTo(x, 75); ctx.lineTo(x, H - 14); ctx.stroke(); });
+
+        // file row guides
+        ctx.strokeStyle = 'rgba(224,233,243,0.9)';
+        for (let y = 102; y < H - 10; y += 74) {
+            ctx.beginPath(); ctx.moveTo(221, y); ctx.lineTo(W - 10, y); ctx.stroke();
+        }
     }
 
     // =====================================================
@@ -760,14 +823,17 @@
     // =====================================================
     //  ENEMIES (EXCEL FILES)
     // =====================================================
-    const ENEMY_W = 120, ENEMY_H = 72;
+    const ENEMY_W = 126, ENEMY_H = 62;
+    const PROTECTED_FILE_NAME = 'Real_Final_Datarails.xlsx';
 
     function createEnemies(level) {
         const cfg = LEVELS[level - 1];
         const enemies = [];
         const padX = 14, padY = 12;
         const totalW = cfg.cols * (ENEMY_W + padX);
-        const startX = (W - totalW) / 2 + ENEMY_W / 2;
+        const contentStartX = 230;
+        const contentWidth = W - contentStartX - 30;
+        const startX = contentStartX + (contentWidth - totalW) / 2 + ENEMY_W / 2;
 
         for (let row = 0; row < cfg.rows; row++) {
             for (let col = 0; col < cfg.cols; col++) {
@@ -776,7 +842,7 @@
                 const hp = row === 0 ? 3 : row === 1 ? 2 : 1;
                 enemies.push({
                     x: startX + col * (ENEMY_W + padX),
-                    y: 55 + row * (ENEMY_H + padY),
+                    y: 110 + row * (ENEMY_H + padY),
                     width: ENEMY_W, height: ENEMY_H,
                     hp, maxHp: hp,
                     name: VERSION_NAMES[nameIdx],
@@ -786,6 +852,22 @@
                 });
             }
         }
+        enemies.push({
+            x: W / 2,
+            y: 78,
+            width: ENEMY_W + 36,
+            height: ENEMY_H,
+            hp: 1,
+            maxHp: 1,
+            name: PROTECTED_FILE_NAME,
+            dataRows: [],
+            row: -1,
+            alive: true,
+            hitFlash: 0,
+            wobble: 0,
+            protectedFile: true,
+        });
+
         return enemies;
     }
 
@@ -793,145 +875,78 @@
         if (!e.alive) return;
         ctx.save();
 
-        const ex = e.x - e.width / 2, ey = e.y - e.height / 2;
-        const ew = e.width, eh = e.height;
-
+        const ex = e.x - e.width / 2;
+        const ey = e.y - e.height / 2;
+        const ew = e.width;
+        const eh = e.height;
+        const isProtected = !!e.protectedFile;
         e.wobble += 0.02;
-        ctx.translate(0, Math.sin(e.wobble) * 1.2);
+        ctx.translate(0, Math.sin(e.wobble) * (isProtected ? 0.35 : 0.8));
 
-        if (e.hitFlash > 0) { ctx.shadowColor = '#fff'; ctx.shadowBlur = 18; e.hitFlash--; }
-        const hpRatio = e.hp / e.maxHp;
-        const damaged = hpRatio < 1;
-
-        // Shadow
-        ctx.fillStyle = 'rgba(0,0,0,0.35)';
-        ctx.fillRect(ex + 3, ey + 3, ew, eh);
-
-        // Body
-        ctx.fillStyle = damaged ? '#3a1a1a' : '#1c2333';
+        const baseColor = isProtected ? '#fff6de' : '#ffffff';
+        const borderColor = isProtected ? '#d8b46a' : '#cfdeec';
+        ctx.fillStyle = e.hitFlash > 0 ? '#d9ecff' : baseColor;
         ctx.fillRect(ex, ey, ew, eh);
-
-        // Title bar
-        const titleH = 16;
-        const tg = ctx.createLinearGradient(ex, ey, ex, ey + titleH);
-        if (damaged) { tg.addColorStop(0, '#8b2020'); tg.addColorStop(1, '#6b1515'); }
-        else { tg.addColorStop(0, '#217346'); tg.addColorStop(1, '#1a5c38'); }
-        ctx.fillStyle = tg;
-        ctx.fillRect(ex, ey, ew, titleH);
-
-        // Excel logo
-        ctx.fillStyle = damaged ? '#aa3333' : '#185a35';
-        ctx.fillRect(ex + 3, ey + 2.5, 11, 11);
-        ctx.fillStyle = '#fff';
-        ctx.font = 'bold 9px Arial';
-        ctx.fillText('X', ex + 5.5, ey + 12);
-
-        // Filename (big, readable)
-        ctx.fillStyle = '#fff';
-        ctx.font = 'bold 10px Courier New';
-        ctx.textAlign = 'center';
-        let dn = e.name;
-        if (ctx.measureText(dn).width > ew - 30) {
-            while (ctx.measureText(dn + '..').width > ew - 30 && dn.length > 5) dn = dn.slice(0, -1);
-            dn += '..';
-        }
-        ctx.fillText(dn, e.x, ey + 12);
-        ctx.textAlign = 'left';
-
-        // Ribbon
-        const ribbonY = ey + titleH, ribbonH = 10;
-        ctx.fillStyle = damaged ? '#2a1515' : '#1a2a1a';
-        ctx.fillRect(ex, ribbonY, ew, ribbonH);
-        ctx.font = '7px Arial';
-        ctx.fillStyle = damaged ? '#884444' : '#5a9a6a';
-        ['Home','Insert','Data','View'].forEach((t, i) => ctx.fillText(t, ex + 5 + i * 27, ribbonY + 8));
-
-        // Formula bar
-        const formulaY = ribbonY + ribbonH, formulaH = 9;
-        ctx.fillStyle = damaged ? '#1a0d0d' : '#141c28';
-        ctx.fillRect(ex, formulaY, ew, formulaH);
-        ctx.font = '7px Courier New';
-        ctx.fillStyle = damaged ? '#664444' : '#4a6a5a';
-        ctx.fillText('fx', ex + 3, formulaY + 7);
-        ctx.fillStyle = damaged ? '#886666' : '#6a8a7a';
-        ctx.fillText('=SUM(B2:B14)', ex + 16, formulaY + 7);
-
-        // Grid area
-        const gridY = formulaY + formulaH;
-        const gridH = eh - (gridY - ey);
-        ctx.fillStyle = damaged ? '#1a0e0e' : '#0f1520';
-        ctx.fillRect(ex, gridY, ew, gridH);
-
-        const colHeaderH = 9;
-        ctx.fillStyle = damaged ? '#2a1818' : '#1a2535';
-        ctx.fillRect(ex, gridY, ew, colHeaderH);
-        ctx.fillStyle = damaged ? '#886666' : '#6688aa';
-        ctx.font = 'bold 7px Arial';
-        const colW = (ew - 28) / 3;
-        ['A','B','C'].forEach((c, i) => ctx.fillText(c, ex + 32 + i * colW, gridY + 7));
-
-        ctx.fillStyle = damaged ? '#2a1818' : '#1a2535';
-        ctx.fillRect(ex, gridY + colHeaderH, 14, gridH - colHeaderH);
-
-        const dataStartY = gridY + colHeaderH;
-        const rowH = (gridH - colHeaderH) / 3;
-        e.dataRows.forEach((dr, ri) => {
-            const ry = dataStartY + ri * rowH;
-            ctx.fillStyle = damaged ? '#775555' : '#5577aa';
-            ctx.font = '7px Arial';
-            ctx.fillText(`${ri+1}`, ex + 2, ry + 8);
-            ctx.font = '8px Courier New';
-            dr.forEach((cell, ci) => {
-                const cx = ex + 16 + ci * colW;
-                if (ri % 2 === 0) {
-                    ctx.fillStyle = damaged ? 'rgba(60,30,30,0.3)' : 'rgba(20,30,50,0.3)';
-                    ctx.fillRect(cx - 1, ry, colW, rowH);
-                }
-                ctx.fillStyle = ci === 0 ? (damaged ? '#cc8888' : '#8899bb') : (damaged ? '#dd9999' : '#99ccaa');
-                ctx.fillText(cell, cx + 2, ry + 8);
-            });
-            ctx.strokeStyle = damaged ? 'rgba(100,50,50,0.25)' : 'rgba(50,80,120,0.25)';
-            ctx.lineWidth = 0.5;
-            ctx.beginPath(); ctx.moveTo(ex + 14, ry); ctx.lineTo(ex + ew, ry); ctx.stroke();
-        });
-
-        ctx.strokeStyle = damaged ? 'rgba(100,50,50,0.2)' : 'rgba(50,80,120,0.2)';
-        ctx.beginPath(); ctx.moveTo(ex + 14, gridY + colHeaderH); ctx.lineTo(ex + 14, ey + eh); ctx.stroke();
-        for (let ci = 1; ci <= 3; ci++) {
-            const lx = ex + 14 + ci * colW;
-            ctx.beginPath(); ctx.moveTo(lx, gridY); ctx.lineTo(lx, ey + eh); ctx.stroke();
-        }
-
-        // Border
-        ctx.strokeStyle = damaged ? 'rgba(200,80,80,0.6)' : 'rgba(33,115,70,0.5)';
-        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = borderColor;
+        ctx.lineWidth = 1;
         ctx.strokeRect(ex, ey, ew, eh);
 
-        // Window controls
-        ctx.fillStyle = '#e74c3c'; ctx.fillRect(ex + ew - 10, ey + 5, 5, 5);
-        ctx.fillStyle = '#f39c12'; ctx.fillRect(ex + ew - 18, ey + 5, 5, 5);
-        ctx.fillStyle = '#27ae60'; ctx.fillRect(ex + ew - 26, ey + 5, 5, 5);
+        // file icon (Explorer style)
+        ctx.fillStyle = '#ffffff';
+        ctx.strokeStyle = '#b8cadb';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(ex + 10, ey + 9);
+        ctx.lineTo(ex + 24, ey + 9);
+        ctx.lineTo(ex + 30, ey + 15);
+        ctx.lineTo(ex + 30, ey + 33);
+        ctx.lineTo(ex + 10, ey + 33);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
 
-        // HP bar
-        if (e.maxHp > 1) {
-            ctx.fillStyle = 'rgba(0,0,0,0.5)';
-            ctx.fillRect(ex + 2, ey + eh - 4, ew - 4, 3);
-            ctx.fillStyle = hpRatio > 0.5 ? '#27ae60' : hpRatio > 0.25 ? '#f39c12' : '#e74c3c';
-            ctx.fillRect(ex + 2, ey + eh - 4, (ew - 4) * hpRatio, 3);
+        ctx.fillStyle = '#dce9f5';
+        ctx.beginPath();
+        ctx.moveTo(ex + 24, ey + 9);
+        ctx.lineTo(ex + 24, ey + 15);
+        ctx.lineTo(ex + 30, ey + 15);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = '#217346';
+        ctx.fillRect(ex + 12, ey + 20, 16, 10);
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 8px Segoe UI';
+        ctx.fillText('XLSX', ex + 13, ey + 28);
+
+        ctx.fillStyle = '#2f4f72';
+        ctx.font = `600 ${isProtected ? 9.5 : 9}px Segoe UI`;
+        let name = e.name;
+        if (ctx.measureText(name).width > ew - 42) {
+            while (ctx.measureText(name + '...').width > ew - 42 && name.length > 8) name = name.slice(0, -1);
+            name += '...';
+        }
+        ctx.fillText(name, ex + 36, ey + 20);
+
+        ctx.fillStyle = '#6d85a0';
+        ctx.font = '8px Segoe UI';
+        ctx.fillText('Type: Excel Worksheet', ex + 36, ey + 33);
+
+        if (isProtected) {
+            ctx.fillStyle = '#a37200';
+            ctx.font = 'bold 8px Segoe UI';
+            ctx.fillText('Datarails final (protected)', ex + 36, ey + 46);
         }
 
-        // Cracks
-        if (damaged) {
-            ctx.strokeStyle = 'rgba(255,100,100,0.4)';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(e.x - 10, ey + 20); ctx.lineTo(e.x + 5, ey + eh / 2); ctx.lineTo(e.x - 8, ey + eh - 10);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(e.x + 15, ey + 15); ctx.lineTo(e.x + 8, ey + eh / 2 + 5);
-            ctx.stroke();
+        if (!isProtected && e.hp < e.maxHp) {
+            const hpRatio = e.hp / e.maxHp;
+            ctx.fillStyle = 'rgba(0,0,0,0.08)';
+            ctx.fillRect(ex + 8, ey + eh - 8, ew - 16, 4);
+            ctx.fillStyle = hpRatio > 0.5 ? '#3ca962' : hpRatio > 0.25 ? '#df8a27' : '#d9534f';
+            ctx.fillRect(ex + 8, ey + eh - 8, (ew - 16) * hpRatio, 4);
         }
 
+        if (e.hitFlash > 0) e.hitFlash--;
         ctx.restore();
     }
 
@@ -1065,8 +1080,7 @@
                 state.enemies.forEach(e => {
                     if (!e.alive) return;
                     if (Math.abs(e.x - state.player.x) < 70) {
-                        e.hp -= 4; e.hitFlash = 10;
-                        if (e.hp <= 0) killEnemy(e);
+                        damageEnemy(e, 4);
                     }
                 });
                 addFloatingText(W / 2, H / 2, 'ONE TRUE FILE!', '#4fc3f7');
@@ -1076,9 +1090,8 @@
             case 'the_bulk':
                 state.enemies.forEach(e => {
                     if (!e.alive) return;
-                    e.hp--; e.hitFlash = 8;
+                    damageEnemy(e, 1);
                     spawnExplosion(e.x, e.y, '#66bb6a', 6);
-                    if (e.hp <= 0) killEnemy(e);
                 });
                 addFloatingText(W / 2, H / 2, 'MEGA MERGE!', '#66bb6a');
                 state.shakeTimer = 15;
@@ -1098,9 +1111,8 @@
             case 'forecast_man':
                 state.enemies.forEach(e => {
                     if (!e.alive) return;
-                    e.hp--; e.hitFlash = 8;
+                    damageEnemy(e, 1);
                     spawnExplosion(e.x, e.y, '#ab47bc', 4);
-                    if (e.hp <= 0) killEnemy(e);
                 });
                 addFloatingText(W / 2, H / 2, 'I FORESAW THIS!', '#ab47bc');
                 state.shakeTimer = 10;
@@ -1116,15 +1128,36 @@
                 // Carpet bomb - explosions everywhere
                 const alive = state.enemies.filter(e => e.alive);
                 alive.forEach(e => {
-                    e.hp -= 2; e.hitFlash = 10;
+                    damageEnemy(e, 2);
                     spawnExplosion(e.x, e.y, '#ffd740', 10);
                     spawnCellExplosion(e.x, e.y);
-                    if (e.hp <= 0) killEnemy(e);
                 });
                 addFloatingText(W / 2, H / 2, 'BOARD REPORT!', '#ffd740');
                 state.shakeTimer = 20;
                 break;
         }
+    }
+
+    function protectedFileDestroyed() {
+        if (state.gameOver) return;
+        state.running = false;
+        state.gameOver = true;
+        document.getElementById('final-score').textContent = state.score;
+        document.getElementById('gameover-title').textContent = 'MISSION FAILED';
+        document.getElementById('gameover-sub').textContent = 'You destroyed Real_Final_Datarails.xlsx.';
+        document.getElementById('game-over-message').textContent = 'Destroy every copy, but never touch the true Datarails file.';
+        document.getElementById('game-over-screen').classList.remove('hidden');
+    }
+
+    function damageEnemy(e, amount = 1) {
+        if (!e.alive) return;
+        if (e.protectedFile) {
+            protectedFileDestroyed();
+            return;
+        }
+        e.hp -= amount;
+        e.hitFlash = 6;
+        if (e.hp <= 0) killEnemy(e);
     }
 
     function killEnemy(e) {
@@ -1352,7 +1385,7 @@
                 if (!e.alive) return;
                 if (bulletsToRemove.has(bi) && !b.pierce) return;
                 if (checkCollision(b.x, b.y, e.x, e.y, e.width, e.height)) {
-                    e.hp--; e.hitFlash = 6;
+                    damageEnemy(e, 1);
                     if (!b.pierce) bulletsToRemove.add(bi);
 
                     // Explosive: splash damage to nearby
@@ -1361,14 +1394,13 @@
                         state.enemies.forEach(other => {
                             if (!other.alive || other === e) return;
                             if (Math.hypot(other.x - e.x, other.y - e.y) < 80) {
-                                other.hp--; other.hitFlash = 4;
-                                if (other.hp <= 0) killEnemy(other);
+                                damageEnemy(other, 1);
                             }
                         });
                     }
 
-                    if (e.hp <= 0) {
-                        killEnemy(e);
+                    if (state.gameOver || !e.alive) {
+                        // handled by damageEnemy
                     } else {
                         spawnExplosion(e.x, e.y, '#fff', 5);
                         addFloatingText(e.x, e.y - 20, 'CRACKED!', '#ff9944');
@@ -1409,13 +1441,14 @@
         });
 
         // Move enemies
-        const alive = state.enemies.filter(e => e.alive);
+        const alive = state.enemies.filter(e => e.alive && !e.protectedFile);
         if (alive.length === 0) { nextLevel(); return; }
 
         if (state.freezeTimer <= 0) {
             let hitEdge = false;
             const cfg = LEVELS[state.level - 1];
-            const speedMult = 1 + (1 - alive.length / state.enemies.length) * 1.5;
+            const totalHostiles = Math.max(1, state.enemies.filter(e => !e.protectedFile).length);
+            const speedMult = 1 + (1 - alive.length / totalHostiles) * 1.5;
             const heroSlow = hero.enemySpeedMult || 1;
 
             alive.forEach(e => {
@@ -1503,7 +1536,7 @@
         ctx.save();
         if (state.shakeTimer > 0) ctx.translate((Math.random()-0.5)*8, (Math.random()-0.5)*8);
 
-        ctx.fillStyle = '#0a0a16';
+        ctx.fillStyle = '#dce9f7';
         ctx.fillRect(-5, -5, W + 10, H + 10);
 
         if (state.freezeTimer > 0) {
@@ -1511,8 +1544,8 @@
             ctx.fillRect(0, 0, W, H);
         }
 
-        drawGrid();
         drawStarfield();
+        drawGrid();
         state.enemies.forEach(drawEnemy);
         state.bullets.forEach(drawBullet);
         state.enemyBullets.forEach(drawEnemyBullet);
@@ -1621,8 +1654,8 @@
     // Start screen bg
     initStarfield();
     function drawStartBgLoop() {
-        ctx.fillStyle = '#0a0a16'; ctx.fillRect(0, 0, W, H);
-        drawGrid(); drawStarfield();
+        ctx.fillStyle = '#dce9f7'; ctx.fillRect(0, 0, W, H);
+        drawStarfield(); drawGrid();
         if (!state.running) requestAnimationFrame(drawStartBgLoop);
     }
     drawStartBgLoop();
