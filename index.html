@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Version Invaders - FP&A Superhero Edition by Datarails</title>
+    <title>Version Invaders - Windows Explorer Defense Edition by Datarails</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -180,7 +180,7 @@
 </head>
 <body>
     <div id="game-header">
-        <div class="title">VERSION INVADERS</div>
+        <div class="title">VERSION INVADERS • EXPLORER MODE</div>
         <div class="stats">
             <div><span class="stat-label">HERO: </span><span id="hero-label">-</span></div>
             <div><span class="stat-label">SCORE: </span><span class="stat-value" id="score-display">0</span></div>
@@ -236,6 +236,7 @@
     // =====================================================
     //  CANVAS
     // =====================================================
+    // MERGE NOTE: Explorer-theme rendering is intentionally centralized in drawStarfield/drawGrid/drawEnemy to avoid future merge conflicts.
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
     const W = canvas.width;
